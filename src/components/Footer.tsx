@@ -1,0 +1,59 @@
+import Link from "next/link";
+import { site, messages, type Lang, waLink } from "@/lib/site";
+export default function Footer({ lang }: { lang: Lang }) {
+  const t = messages[lang];
+  return (
+    <>
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-grid">
+            <div>
+              <Link className="brand" href={`/${lang}`}>
+                silio<span>✳</span>
+              </Link>
+              <p>{t.footer}</p>
+              <small>{site.location}</small>
+            </div>
+            <div>
+              <strong>{t.navServices}</strong>
+              <Link href={`/${lang}/services`}>{t.navServices}</Link>
+              <Link href={`/${lang}/pricing`}>{t.navPricing}</Link>
+              <Link href={`/${lang}/contact`}>{t.navContact}</Link>
+              <Link href={`/${lang}/demos`}>
+                {lang === "hi" ? "डेमो" : "Demos"}
+              </Link>
+              <Link href={`/${lang}/review`}>
+                {lang === "hi" ? "मुफ़्त वेबसाइट समीक्षा" : "Free website review"}
+              </Link>
+              <Link href={`/${lang}/privacy`}>{t.privacy}</Link>
+            </div>
+            <div>
+              <strong>{t.navContact}</strong>
+              <a href={`tel:+91${site.phone}`}>+91 {site.phone}</a>
+              <a
+                href={waLink("Hello Silio, I have a project enquiry.")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp
+              </a>
+              <small>Jodhpur, Rajasthan</small>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            © {new Date().getFullYear()} Silio. {t.rights} · {t.disclaimer}
+          </div>
+        </div>
+      </footer>
+      <a
+        className="wa-float"
+        href={waLink("Hello Silio, I would like to discuss a project.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Silio on WhatsApp"
+      >
+        WhatsApp
+      </a>
+    </>
+  );
+}
