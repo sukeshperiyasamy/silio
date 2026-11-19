@@ -129,3 +129,54 @@ test("provider failure does not report a successful delivery", async () => {
   );
   assert.equal((await POST(request(valid))).status, 502);
 });
+
+function modelRequest(
+  filename: string,
+  content: BlobPart = "solid sample\nendsolid sample",
+) {
+  const form = new FormData();
+  for (const [key, value] of Object.entries(valid)) form.set(key, value);
+  form.set("service", "PLA FDM 3D printing");
+  form.set("campaign", JSON.stringify({ utm_source: "3d-demo" }));
+  form.set("model", new File([content], filename));
+  return new NextRequest("http://localhost/api/inquiry", {
+    method: "POST",
+    body: form,
+  });
+}
+test("a multipart model is forwarded as a bounded email attachment", async () => {
+  process.env.RESEND_API_KEY = "test-only-key";
+  process.env.INQUIRY_TO_EMAIL = "owner@example.com";
+  process.env.INQUIRY_FROM_EMAIL = "test@example.com";
+  let sent: {
+    attachments?: { filename: string; content: string }[];
+    text?: string;
+  } = {};
+  mock.method(
+    globalThis,
+    "fetch",
+    async (_url: unknown, options: RequestInit) => {
+      sent = JSON.parse(String(options.body));
+      return Response.json({ id: "local-test" });
+    },
+  );
+  assert.equal((await POST(modelRequest("enclosure.stl"))).status, 200);
+  assert.equal(sent.attachments?.[0].filename, "enclosure.stl");
+  assert.equal(
+    Buffer.from(sent.attachments![0].content, "base64").toString(),
+    "solid sample\nendsolid sample",
+  );
+  assert.match(sent.text!, /3d-demo/);
+});
+test("unsupported, empty and oversized model attachments are rejected", async () => {
+  assert.equal((await POST(modelRequest("script.exe"))).status, 400);
+  assert.equal((await POST(modelRequest("empty.stl", ""))).status, 400);
+  assert.equal(
+    (await POST(modelRequest("large.stl", new Uint8Array(8 * 1024 * 1024 + 1))))
+      .status,
+    413,
+  );
+});
+test("model uploads do not claim success when email is unconfigured", async () => {
+  assert.equal((await POST(modelRequest("part.STEP"))).status, 503);
+});

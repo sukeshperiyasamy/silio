@@ -1,23 +1,27 @@
+import {
+  readInquiryBody,
+  InquiryInputError,
+  type ModelAttachment,
+} from "@/lib/inquiry-body";
 import { NextRequest, NextResponse } from "next/server";
 export const runtime = "nodejs";
 function clean(value: unknown, max = 3000) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 export async function POST(req: NextRequest) {
-  const len = Number(req.headers.get("content-length") || "0");
-  if (len > 12000)
-    return NextResponse.json({ error: "Request too large" }, { status: 413 });
-  let body: Record<string, unknown>;
+  let body: Record<string, unknown>, attachment: ModelAttachment | undefined;
   try {
-    const raw = await req.text();
-    if (new TextEncoder().encode(raw).length > 12000)
-      return NextResponse.json({ error: "Request too large" }, { status: 413 });
-    const parsed: unknown = JSON.parse(raw);
-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed))
-      throw new Error("Invalid payload");
-    body = parsed as Record<string, unknown>;
-  } catch {
-    return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    ({ body, attachment } = await readInquiryBody(req));
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error:
+          error instanceof InquiryInputError
+            ? error.message
+            : "Invalid payload",
+      },
+      { status: error instanceof InquiryInputError ? error.status : 400 },
+    );
   }
   if (clean(body.website)) return NextResponse.json({ ok: true }); // honeypot
   const name = clean(body.name, 100),
@@ -111,6 +115,7 @@ export async function POST(req: NextRequest) {
         subject: `Silio enquiry: ${service}`,
         text: content,
         reply_to: email,
+        ...(attachment ? { attachments: [attachment] } : {}),
       }),
     });
     if (!response.ok) {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PrintVisual from "@/components/PrintVisual";
 import GrowthSections from "@/components/GrowthSections";
 import ProjectPreview from "@/components/ProjectPreview";
 import { site, messages, langValid, waLink } from "@/lib/site";
@@ -152,6 +153,32 @@ export default async function Home({
           <div className="button-row">
             <Link href={`/${lang}/pricing`} className="pill">
               {t.viewAll}
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="section print-intro">
+        <div className="container demo-split">
+          <PrintVisual lang={lang} />
+          <div className="section-head">
+            <span className="label">
+              {lang === "hi" ? "अब 3D में भी" : "NOW IN THREE DIMENSIONS"}
+            </span>
+            <h2>
+              {lang === "hi"
+                ? "डिजिटल आइडिया। भौतिक संभावनाएँ।"
+                : "Digital ideas. Physical possibilities."}
+            </h2>
+            <p className="subtitle">
+              {lang === "hi"
+                ? "CAD मॉडल, इलेक्ट्रॉनिक्स बॉक्स, डिस्प्ले मॉडल और बाहरी प्रदाता से समीक्षा के बाद PLA प्रिंटिंग। डिज़ाइन, प्रिंट और डिलीवरी का स्पष्ट अलग कोटेशन।"
+                : "CAD models, electronics enclosures, display models and reviewed PLA printing through an external provider. Design, print and delivery quoted clearly and separately."}
+            </p>
+            <Link
+              className="pill"
+              href={`/${lang}/services/3d-design-printing`}
+            >
+              {lang === "hi" ? "3D सेवाएँ देखें" : "Explore 3D Design & Printing"}
             </Link>
           </div>
         </div>

@@ -8,6 +8,7 @@ export const featuredIds = [
   "maintenance",
 ];
 export const categories = {
+  "3d": ["3D Design & Printing", "3D डिज़ाइन और प्रिंटिंग"],
   web: ["Websites & web apps", "वेबसाइट और वेब ऐप"],
   shops: ["Shops & restaurants", "दुकान और रेस्टोरेंट"],
   data: ["Excel & data", "Excel और डेटा"],
@@ -31,7 +32,7 @@ export function quotePath(lang: Lang, id: string) {
 export function estimatePackages(ids: readonly string[], careId = "") {
   const selected = [...new Set(ids)]
     .map((id) => prices.find((p) => p.id === id))
-    .filter((p) => p && !p.monthly);
+    .filter((p) => p && !p.monthly && !p.quoteOnly && !p.unit);
   const care = prices.find((p) => p.id === careId && p.monthly);
   return {
     oneTime: selected.reduce((sum, p) => sum + (p?.price ?? 0), 0),

@@ -1,4 +1,6 @@
-export const servicePages = [
+import { prices, type Lang } from "./site";
+import { serviceContent } from "./service-content";
+const featuredServicePages = [
   {
     id: "landing",
     slug: "business-websites-jodhpur",
@@ -100,6 +102,107 @@ export const servicePages = [
     ],
   },
 ] as const;
+const preparation: Record<string, [string, string, string, string]> = {
+  landing: [
+    "Your logo, approved text, service list, photos and business contact details.",
+    "लोगो, स्वीकृत टेक्स्ट, सेवाओं की सूची, फ़ोटो और संपर्क विवरण।",
+    "Domain, hosting, additional pages and complex integrations are separate.",
+    "डोमेन, होस्टिंग, अतिरिक्त पेज और जटिल इंटीग्रेशन अलग हैं।",
+  ],
+  "whatsapp-catalogue": [
+    "Product names, images, prices and your business WhatsApp number.",
+    "प्रोडक्ट नाम, फ़ोटो, कीमतें और व्यवसाय का WhatsApp नंबर।",
+    "Online payments, live inventory and additional products require a separate scope.",
+    "ऑनलाइन भुगतान, लाइव स्टॉक और अतिरिक्त प्रोडक्ट का अलग दायरा होगा।",
+  ],
+  cleaning: [
+    "An anonymized workbook, column definitions and examples of required changes.",
+    "गुमनाम वर्कबुक, कॉलम का मतलब और ज़रूरी बदलावों के उदाहरण।",
+    "Advanced formulas, multiple-system merging and manual research are separate.",
+    "जटिल फ़ॉर्मूले, कई सिस्टम का डेटा जोड़ना और मैन्युअल रिसर्च अलग हैं।",
+  ],
+  "qr-menu": [
+    "Your menu, prices, item categories, logo and hosting preference.",
+    "मेन्यू, कीमतें, श्रेणियाँ, लोगो और होस्टिंग की पसंद।",
+    "Ordering, payments, printing physical signs and hosting fees are separate.",
+    "ऑर्डरिंग, भुगतान, वास्तविक साइन प्रिंट और होस्टिंग फ़ीस अलग हैं।",
+  ],
+  maintenance: [
+    "Your website stack, access method and prioritized update requests.",
+    "वेबसाइट की तकनीक, एक्सेस का तरीका और प्राथमिकता वाले अपडेट।",
+    "Hosting, redesigns, incident recovery and extra hours are separate.",
+    "होस्टिंग, नया डिज़ाइन, घटना के बाद रिकवरी और अतिरिक्त घंटे अलग हैं।",
+  ],
+};
+export const servicePages = [
+  ...featuredServicePages.map((page) => ({
+    ...page,
+    inputsEn: preparation[page.id][0],
+    inputsHi: preparation[page.id][1],
+    exclusionsEn: preparation[page.id][2],
+    exclusionsHi: preparation[page.id][3],
+  })),
+  ...serviceContent.map(
+    ([
+      id,
+      slug,
+      audienceEn,
+      audienceHi,
+      inputsEn,
+      inputsHi,
+      exclusionsEn,
+      exclusionsHi,
+    ]) => {
+      const p = prices.find((p) => p.id === id);
+      if (!p) throw new Error(`Missing service package: ${id}`);
+      return {
+        id,
+        slug,
+        en: `${p.en} in Jodhpur`,
+        hi: `जोधपुर में ${p.hi}`,
+        audienceEn,
+        audienceHi,
+        inputsEn,
+        inputsHi,
+        exclusionsEn,
+        exclusionsHi,
+        outcomesEn: [p.detailEn],
+        outcomesHi: [p.detailHi],
+      };
+    },
+  ),
+];
+export type ServicePageDetail = (typeof servicePages)[number];
+export function serviceFaqs(page: ServicePageDetail, lang: Lang) {
+  const hi = lang === "hi";
+  const p = prices.find((p) => p.id === page.id)!;
+  return [
+    {
+      question: hi
+        ? "शुरू करने के लिए क्या चाहिए?"
+        : "What do you need to get started?",
+      answer: hi ? page.inputsHi : page.inputsEn,
+    },
+    {
+      question: hi
+        ? "शुरुआती पैकेज में क्या शामिल है?"
+        : "What is included in the starting scope?",
+      answer: hi ? p.detailHi : p.detailEn,
+    },
+    {
+      question: hi ? "कौन-से काम अलग हैं?" : "What is quoted separately?",
+      answer: hi ? page.exclusionsHi : page.exclusionsEn,
+    },
+    {
+      question: hi
+        ? "समय और अंतिम कीमत कैसे तय होंगे?"
+        : "How are the timeline and final price confirmed?",
+      answer: hi
+        ? "आपकी ज़रूरत और उपलब्ध सामग्री की समीक्षा के बाद काम, समयसीमा और कीमत लिखित रूप से तय होंगे। प्रोजेक्ट शुरू करने से पहले आप इन्हें स्वीकृत करेंगे।"
+        : "After reviewing your requirements and supplied materials, we agree on scope, timeline and price in writing for your approval before work starts.",
+    },
+  ];
+}
 export function servicePath(lang: string, id: string) {
   const item = servicePages.find((p) => p.id === id);
   return item ? `/${lang}/services/${item.slug}` : null;

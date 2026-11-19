@@ -2,7 +2,7 @@
 
 ## Website implementation
 
-Completed: bilingual positioning for small businesses, five primary offers, 42 scoped packages, local service landing pages, interactive fictional demos, package comparison, project estimator, free website review requests, campaign attribution, and enquiry validation.
+Completed: bilingual positioning for small businesses, five primary offers, 49 scoped packages, dedicated bilingual pages for every service, interactive fictional demos, package comparison, project estimator, free website review requests, campaign attribution, and enquiry validation.
 
 Email delivery is implemented but requires owner-supplied Resend configuration. GitHub stores source code; pushing this repository does not deploy a hosted website.
 
@@ -55,3 +55,9 @@ Suggested records: enquiries; source campaign tags; new/contacted/quoted/won/los
 ## Marketing experiments
 
 Start with demos and conversations. The strategy's ₹3,000 monthly scenario allocates ₹1,200 to ad experiments, ₹750 to local materials, ₹600 to content and ₹450 to reserve. These are planning figures, not expenses incurred, commitments or predicted results. Actual accounts, spending and outreach require separate owner action.
+
+## 3D service launch
+
+Implemented: bilingual 3D overview, seven scoped 3D services, per-service pages, indicative printing estimator and bounded model email attachments. The portfolio includes an illustrative enclosure concept only.
+
+Before accepting physical orders: confirm an actual print provider, materials, available machines, quality checks, sample approval process, delivery arrangements and the final itemized price. Do not claim an owned printer or unsupported certification. A live model viewer, automatic slicing, instant manufacturing quotes and online order payments are future work.

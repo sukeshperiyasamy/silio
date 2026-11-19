@@ -36,6 +36,14 @@ export default async function Privacy({
         <div className="container" style={{ maxWidth: 760 }}>
           <p>{t.privacyBody}</p>
           <h2 style={{ fontSize: 28 }}>
+            {hi ? "3D मॉडल फ़ाइलें" : "3D model files"}
+          </h2>
+          <p>
+            {hi
+              ? "अगर आप मॉडल अटैच करते हैं, तो ईमेल सेवा चालू होने पर वह पूछताछ के साथ भेजा जाता है। इस ऐप में फ़ाइल सार्वजनिक गैलरी या प्रोजेक्ट स्टोरेज में सेव नहीं की जाती। केवल वही फ़ाइल भेजें जिसे साझा करने का अधिकार आपके पास है। WhatsApp पर फ़ाइल अलग से भेजनी होगी।"
+              : "If you attach a model, it is sent with your enquiry when email delivery is enabled. This application does not save the file to a public gallery or project storage. Send only files you have the right to share. WhatsApp attachments must be sent separately."}
+          </p>
+          <h2 style={{ fontSize: 28 }}>
             {hi ? "कैंपेन जानकारी" : "Campaign information"}
           </h2>
           <p>

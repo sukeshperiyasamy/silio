@@ -1,3 +1,5 @@
+import ServicePrice from "@/components/ServicePrice";
+import { servicePath } from "@/lib/service-pages";
 import Link from "next/link";
 import { categories, quotePath } from "@/lib/growth";
 import type { Metadata } from "next";
@@ -49,23 +51,33 @@ export default async function Services({
         >
           <div className="container">
             <div className="section-head">
-              <h2>{labels[i]}</h2>
+              <h2>
+                {g === "3d" ? (
+                  <Link href={`/${lang}/services/3d-design-printing`}>
+                    {labels[i]}
+                  </Link>
+                ) : (
+                  labels[i]
+                )}
+              </h2>
             </div>
             <div className="price-grid">
               {prices
                 .filter((p) => p.cat === g)
                 .map((p) => (
                   <div className="price-card" key={p.id}>
-                    <h3>{lang === "hi" ? p.hi : p.en}</h3>
-                    <div className="amount">
-                      ₹{p.price.toLocaleString("en-IN")}
-                      <span className="price-period">
-                        {p.monthly ? (lang === "hi" ? " / माह" : " / mo") : "+"}
-                      </span>
-                    </div>
+                    <h3>
+                      <Link href={servicePath(lang, p.id)!}>
+                        {lang === "hi" ? p.hi : p.en}
+                      </Link>
+                    </h3>
+                    <ServicePrice item={p} lang={lang} />
                     <p>{lang === "hi" ? p.detailHi : p.detailEn}</p>
-                    <Link className="pill outline" href={quotePath(lang, p.id)}>
-                      {t.estimate}
+                    <Link
+                      className="pill outline"
+                      href={servicePath(lang, p.id)!}
+                    >
+                      {lang === "hi" ? "पूरी सेवा देखें" : "Explore this service"}
                     </Link>
                   </div>
                 ))}

@@ -14,6 +14,9 @@ export type ServicePackage = {
   detailHi: string;
   cat: string;
   monthly?: boolean;
+  quoteOnly?: boolean;
+  unit?: "gram";
+  minimum?: number;
 };
 export const prices: readonly ServicePackage[] = [
   {
@@ -422,6 +425,87 @@ export const prices: readonly ServicePackage[] = [
       "हर माह तीन घंटे तक अपडेट, बैकअप जाँच और डिपेंडेंसी समीक्षा; होस्टिंग और रिकवरी अलग।",
     cat: "support",
     monthly: true,
+  },
+  {
+    id: "cad-design",
+    en: "Basic CAD modeling",
+    hi: "बेसिक CAD मॉडलिंग",
+    price: 499,
+    detailEn:
+      "One simple part from supplied dimensions, one revision and an agreed export format; printing extra.",
+    detailHi:
+      "आपके माप से एक सरल पार्ट, एक संशोधन और तय एक्सपोर्ट फ़ॉर्मेट; प्रिंटिंग अलग।",
+    cat: "3d",
+  },
+  {
+    id: "stl-repair",
+    en: "STL file repair",
+    hi: "STL फ़ाइल रिपेयर",
+    price: 299,
+    detailEn:
+      "One existing mesh with basic hole or normal repair; complex reconstruction quoted separately.",
+    detailHi:
+      "एक मौजूदा मेश में बेसिक होल या नॉर्मल रिपेयर; जटिल पुनर्निर्माण का अलग कोटेशन।",
+    cat: "3d",
+  },
+  {
+    id: "enclosure-design",
+    en: "Electronics enclosure design",
+    hi: "इलेक्ट्रॉनिक्स एनक्लोज़र डिज़ाइन",
+    price: 999,
+    detailEn:
+      "One simple enclosure with supplied board dimensions and agreed connector cut-outs; printing and fit iterations extra.",
+    detailHi:
+      "बोर्ड के माप और तय कनेक्टर कट-आउट के साथ एक सरल बॉक्स; प्रिंट और फ़िट संशोधन अलग।",
+    cat: "3d",
+  },
+  {
+    id: "pla-printing",
+    en: "PLA FDM 3D printing",
+    hi: "PLA FDM 3D प्रिंटिंग",
+    price: 5,
+    unit: "gram",
+    minimum: 299,
+    detailEn:
+      "Indicative PLA rate per gram of sliced material including supports; ₹299 minimum print charge. Feasibility, machine time and finish reviewed before confirmation.",
+    detailHi:
+      "सपोर्ट सहित स्लाइस किए गए PLA मटेरियल का सांकेतिक प्रति ग्राम रेट; न्यूनतम प्रिंट शुल्क ₹299। पुष्टि से पहले फ़ीज़िबिलिटी, मशीन समय और फ़िनिश की समीक्षा होगी।",
+    cat: "3d",
+  },
+  {
+    id: "prototype",
+    en: "Custom physical prototypes",
+    hi: "कस्टम भौतिक प्रोटोटाइप",
+    price: 1499,
+    detailEn:
+      "One simple concept development scope; design, print material, finishing and delivery itemized in the final quote.",
+    detailHi:
+      "एक सरल कॉन्सेप्ट डेवलपमेंट स्कोप; डिज़ाइन, प्रिंट मटेरियल, फ़िनिशिंग और डिलीवरी अंतिम कोटेशन में अलग होंगे।",
+    cat: "3d",
+  },
+  {
+    id: "batch-printing",
+    en: "Small-batch 3D printing",
+    hi: "छोटे बैच की 3D प्रिंटिंग",
+    price: 0,
+    quoteOnly: true,
+    detailEn:
+      "A custom quote after file review, quantity, material and sample approval; production arranged through an external provider.",
+    detailHi:
+      "फ़ाइल, मात्रा, मटेरियल और सैंपल स्वीकृति के बाद कस्टम कोटेशन; उत्पादन बाहरी प्रदाता से तय होगा।",
+    cat: "3d",
+  },
+  {
+    id: "architectural-models",
+    en: "Architectural & educational models",
+    hi: "आर्किटेक्चरल और शैक्षिक मॉडल",
+    price: 0,
+    quoteOnly: true,
+    detailEn:
+      "Non-functional display or learning models quoted by dimensions, scale, detail and finishing.",
+    detailHi:
+      "आकार, स्केल, डिटेल और फ़िनिशिंग के अनुसार डिस्प्ले या शैक्षिक गैर-कार्यात्मक मॉडल का कोटेशन।",
+    cat: "3d",
   },
 ];
 export type Lang = "en" | "hi";

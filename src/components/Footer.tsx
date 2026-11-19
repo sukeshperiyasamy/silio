@@ -17,6 +17,15 @@ export default function Footer({ lang }: { lang: Lang }) {
             <div>
               <strong>{t.navServices}</strong>
               <Link href={`/${lang}/services`}>{t.navServices}</Link>
+              <Link href={`/${lang}/services/3d-design-printing`}>
+                {lang === "hi" ? "3D डिज़ाइन और प्रिंटिंग" : "3D Design & Printing"}
+              </Link>
+              <Link href={`/${lang}/portfolio`}>
+                {lang === "hi" ? "डेमो पोर्टफ़ोलियो" : "Demo portfolio"}
+              </Link>
+              <Link href={`/${lang}/estimate`}>
+                {lang === "hi" ? "खर्च का अनुमान" : "Project estimator"}
+              </Link>
               <Link href={`/${lang}/pricing`}>{t.navPricing}</Link>
               <Link href={`/${lang}/contact`}>{t.navContact}</Link>
               <Link href={`/${lang}/demos`}>

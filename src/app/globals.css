@@ -1664,3 +1664,346 @@ main {
     gap: 20px;
   }
 }
+
+/* Dedicated service pages and physical prototyping */
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.breadcrumbs a {
+  border-bottom: 1px solid #a8b99b;
+}
+.breadcrumbs > span:last-child {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 65px;
+  align-items: start;
+}
+.service-detail-grid > div {
+  min-width: 0;
+}
+.service-detail-grid .label {
+  margin-bottom: 14px;
+}
+.detail-block {
+  margin-top: 35px;
+  max-width: 680px;
+}
+.detail-block h3 {
+  font-size: 25px;
+  margin-bottom: 14px;
+}
+.detail-block p {
+  color: var(--muted);
+  line-height: 1.85;
+}
+.service-quote {
+  position: sticky;
+  top: 115px;
+}
+.service-quote h3 {
+  min-height: 0;
+  margin-top: 12px;
+}
+.scope-note {
+  background: #edf3e6;
+  border: 1px solid #d0dfc3;
+  border-radius: 14px;
+  padding: 30px;
+  margin-top: 30px;
+}
+.scope-note h3 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.scope-note p {
+  color: #52634b;
+  line-height: 1.8;
+}
+.scope-note p:last-child {
+  margin-bottom: 0;
+}
+.faq-container {
+  max-width: 850px;
+}
+.service-faq {
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+}
+.service-faq summary {
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.5;
+  padding-right: 15px;
+}
+.service-faq p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin: 18px 0 0;
+}
+.related-section {
+  padding-top: 0;
+}
+.related-services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 35px;
+}
+.related-services > a {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 27px;
+  background: #fff;
+}
+.related-services h3 {
+  font-size: 22px;
+}
+.related-services p {
+  font-size: 15px;
+  color: var(--muted);
+}
+.quote-amount {
+  font-size: 29px;
+  line-height: 1.2;
+  margin-top: 14px;
+  letter-spacing: -0.03em;
+}
+.minimum-charge {
+  display: block;
+  font-size: 13px !important;
+  color: #566d45 !important;
+  margin: -7px 0 20px;
+}
+.print-visual {
+  margin: 0;
+  min-width: 0;
+  background: #e6efdc;
+  border: 1px solid #c8d8bc;
+  border-radius: 17px;
+  overflow: hidden;
+}
+.print-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.print-visual figcaption {
+  padding: 16px 20px;
+  background: #f4f7ee;
+  border-top: 1px solid #c8d8bc;
+  font-size: 12px;
+  color: #5b7352;
+}
+.print-hero .hero-grid {
+  gap: 45px;
+}
+.print-hero h1 {
+  font-size: clamp(44px, 4.8vw, 65px);
+}
+.print-hero-note {
+  font-size: 12px;
+  color: #667d58;
+  margin: 24px 0 0;
+  max-width: 450px;
+}
+.print-intro {
+  border-top: 1px solid var(--line);
+  background: #fafbf8;
+}
+.print-estimator {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: start;
+}
+.print-estimator h3 {
+  font-size: 33px;
+  margin-bottom: 28px;
+}
+.print-estimator > div > .muted {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 24px;
+}
+.print-estimate-summary {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.print-estimate-summary > span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.print-estimate-summary > strong {
+  font-size: 48px;
+  letter-spacing: -0.05em;
+  margin: 10px 0 22px;
+}
+.print-estimate-summary > p {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+  font-size: 15px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.print-subtotal {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+  font-size: 16px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+}
+.print-estimate-summary > small {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.print-estimate-summary > .pill {
+  margin-top: 25px;
+  width: 100%;
+}
+.model-upload {
+  padding: 22px;
+  border: 1px dashed #93ac7f;
+  border-radius: 12px;
+  background: #f4f8ed;
+}
+.model-upload input {
+  font-size: 14px;
+  background: #fff;
+}
+.model-upload small {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.model-upload .muted {
+  font-size: 14px;
+  margin: 10px 0 0;
+}
+.field-error {
+  font-size: 14px;
+  color: #9c302b;
+  margin: 0;
+  line-height: 1.6;
+}
+.field-error:empty {
+  display: none;
+}
+.demo-teaser h2 {
+  font-size: 27px;
+  line-height: 1.15;
+}
+.print-visual + .section-head {
+  margin-bottom: 0;
+}
+@media (max-width: 1100px) {
+  .navlinks {
+    display: none;
+  }
+  .mobile-nav {
+    display: flex;
+    gap: 24px;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 0 0 15px;
+    font-size: 14px;
+  }
+  .navinner {
+    height: 76px;
+  }
+  .service-quote {
+    top: 145px;
+  }
+}
+@media (max-width: 850px) {
+  .service-detail-grid,
+  .print-estimator {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .service-quote {
+    position: static;
+  }
+  .related-services {
+    grid-template-columns: 1fr 1fr;
+  }
+  .print-hero .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .print-hero .print-visual {
+    max-width: 560px;
+    width: 100%;
+    margin: auto;
+  }
+  .service-detail-grid h2 {
+    font-size: 37px;
+  }
+}
+@media (max-width: 580px) {
+  .related-services {
+    grid-template-columns: 1fr;
+  }
+  .scope-note {
+    padding: 25px;
+  }
+  .service-faq summary {
+    font-size: 17px;
+  }
+  .service-faq p {
+    font-size: 15px;
+  }
+  .breadcrumbs {
+    font-size: 12px;
+    margin-bottom: 25px;
+  }
+  .print-hero h1 {
+    font-size: 43px;
+  }
+  .print-hero .button-row {
+    gap: 10px;
+  }
+  .print-hero .button-row .pill {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+  .print-estimate-summary {
+    padding: 26px;
+  }
+  .print-estimator h3 {
+    font-size: 29px;
+  }
+  .model-upload {
+    padding: 16px;
+  }
+  .print-visual figcaption {
+    padding: 13px 16px;
+    font-size: 11px;
+  }
+  .print-estimate-summary > strong {
+    font-size: 43px;
+  }
+  .print-intro .demo-split {
+    gap: 32px;
+  }
+}

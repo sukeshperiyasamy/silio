@@ -24,8 +24,8 @@ src/
     sitemap.ts         Localized sitemap
   components/          Navigation, footer, pricing filters, form and illustrative artwork
   lib/growth.ts        Featured offers, quote links and estimate calculations
-  lib/service-pages.ts Five local service landing pages
-  lib/site.ts          Brand, contact details, all 42 scoped packages and localized copy
+  lib/service-pages.ts Dedicated pages for every service
+  lib/site.ts          Brand, contact details, all 49 scoped packages and localized copy
   middleware.ts        Locale header for the HTML language attribute
 public/                Silio favicon and static assets
 tests/                 Estimate and enquiry validation tests
@@ -40,13 +40,23 @@ Edit `src/lib/site.ts` for contact details, prices, package scope and translatio
 ## Implemented growth features
 
 - Five primary offers: business websites (₹3,999), WhatsApp catalogues (₹1,999), Excel cleanup (₹499), QR menus (₹999), and website care (₹999/month).
-- 42 scoped packages across websites, shop tools, data, care, business management, marketing, automation, mobile apps and custom projects.
+- 49 scoped packages across websites, shop tools, data, care, business management, marketing, automation, mobile apps and custom projects.
 - English/Hindi interactive demos at `/en/demos` and `/hi/demos`. All business names, products and data in the demos are fictional; demo enquiries do not send messages.
 - A project estimator at `/en/estimate`, keeping one-time estimates and recurring care separate. Calculations deduplicate selected packages and use the central price list.
-- A comparison table on pricing, five Jodhpur-focused service landing pages, and a free human website review request at `/en/review`.
+- A comparison table on pricing, 49 dedicated Jodhpur-focused service pages, and a free human website review request at `/en/review`.
 - Quote buttons prefill the chosen service. Estimator enquiries also prefill the proposed scope and starting budget.
 - Allowlisted UTM campaign tags remain in browser session storage and accompany submitted enquiries. No third-party analytics script is added. Privacy copy explains this behaviour.
 - Brand naming is recorded in `AGENTS.md`: **Silio**.
+
+## Dedicated service pages and 3D work
+
+Every advertised package has one dedicated page in each language, with unique use cases, required inputs, scope boundaries, FAQs, related services, canonical/hreflang metadata and Service/Breadcrumb/FAQ structured data. Existing five marketing URLs are preserved. New per-service context is in `src/lib/service-content.ts`; tests enforce complete coverage and unique slugs.
+
+The 3D overview is `/en/services/3d-design-printing` (Hindi: `/hi/services/3d-design-printing`). `/services/3d-design-printing` redirects to the English version. It includes CAD, STL repair, electronics enclosures, PLA printing, prototypes, batches and display/educational models. Seven packages are priced as starting design fees, per-gram print rates or custom quotes, as appropriate. A separate print estimate enforces a ₹299 minimum per order at the proposed ₹5/g PLA basis. It is not a slicer or a confirmed quote.
+
+Physical production is planned through an external provider, confirmed before an order. The site does not claim an in-house printer, certified tolerances or proven safety-critical components. Portfolio examples remain explicitly fictional or illustrative.
+
+Model enquiries support one STL, STEP, STP, OBJ or 3MF file up to 8 MB. The endpoint bounds the streamed body, validates the extension and size, and sends the file as an email attachment when Resend is configured. Files are not placed in the repository or a public upload folder. A [Resend email attachment](https://resend.com/docs/api-reference/emails/send-email) uses filename plus base64 content. Model geometry is not parsed or certified, and the 3D viewer remains future work. WhatsApp users must attach the file manually. Hosts can impose lower request-size limits; use a compatible Node deployment or adjust `maxModelBytes` and the displayed limit together.
 
 ## Email enquiries
 

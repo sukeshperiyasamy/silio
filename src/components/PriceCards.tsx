@@ -1,4 +1,5 @@
 "use client";
+import ServicePrice from "@/components/ServicePrice";
 import { servicePath } from "@/lib/service-pages";
 import Link from "next/link";
 import { categories, featuredIds, demoIds, quotePath } from "@/lib/growth";
@@ -59,18 +60,20 @@ export default function PriceCards({
                 x.en
               )}
             </h3>
-            <small>{t.from}</small>
-            <div className="amount">
-              ₹{x.price.toLocaleString("en-IN")}
-              {x.monthly ? (
-                <span className="price-period">
-                  {lang === "hi" ? " / माह" : " / mo"}
-                </span>
-              ) : null}
-            </div>
+            <small>
+              {x.quoteOnly
+                ? lang === "hi"
+                  ? "ज़रूरत के अनुसार"
+                  : "Based on your brief"
+                : t.from}
+            </small>
+            <ServicePrice item={x} lang={lang} />
             <p>{lang === "hi" ? x.detailHi : x.detailEn}</p>
             <Link className="pill outline" href={quotePath(lang, x.id)}>
               {t.estimate}
+            </Link>
+            <Link className="price-demo" href={servicePath(lang, x.id)!}>
+              {lang === "hi" ? "सेवा की पूरी जानकारी" : "Full service details"}
             </Link>
             {demoIds[x.id] && (
               <Link
