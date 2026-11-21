@@ -48,7 +48,7 @@ Edit `src/lib/site.ts` for contact details, prices, package scope and translatio
 - Allowlisted UTM campaign tags remain in browser session storage and accompany submitted enquiries. No third-party analytics script is added. Privacy copy explains this behaviour.
 - Brand naming is recorded in `AGENTS.md`: **Silio**.
 
-The services directory uses a fixed left-hand index of the main service categories and an independently scrollable details panel on desktop. Selecting a category jumps to its services on the right; scrolling updates the active category. Mobile uses a sticky localized category selector with normal page scrolling. Category anchors and dedicated service URLs are preserved.
+The services directory uses a sticky left-hand index of the main service categories and service details in the normal full-page document flow. Selecting a category jumps to its services on the right; normal page scrolling updates the active category. The details column has no internal scrollbar, and the footer follows all services with extra spacing. Mobile uses a sticky localized category selector with normal page scrolling. Category anchors and dedicated service URLs are preserved.
 
 ## Dedicated service pages and 3D work
 

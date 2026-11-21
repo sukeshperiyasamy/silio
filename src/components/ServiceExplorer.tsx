@@ -31,11 +31,7 @@ export default function ServiceExplorer({
     let frame = 0;
     function update() {
       frame = 0;
-      const desktop = window.matchMedia("(min-width: 900px)").matches;
-      const boundary = desktop
-        ? content!.getBoundingClientRect().top + 36
-        : (document.querySelector("header.nav")?.getBoundingClientRect()
-            .height || 88) + 112;
+      const boundary = scrollOffset() + 12;
       let current = sections[0];
       for (const section of sections) {
         if (section.getBoundingClientRect().top <= boundary) current = section;
@@ -47,11 +43,6 @@ export default function ServiceExplorer({
       if (!frame) frame = requestAnimationFrame(update);
     }
     function measure() {
-      const last = sections[sections.length - 1];
-      content!.style.setProperty(
-        "--service-end-space",
-        `${Math.max(0, content!.clientHeight - (last?.offsetHeight || 0) - 48)}px`,
-      );
       content!.parentElement?.style.setProperty(
         "--service-header-offset",
         `${document.querySelector("header.nav")?.getBoundingClientRect().height || 88}px`,
@@ -66,21 +57,19 @@ export default function ServiceExplorer({
         return;
       }
       const target = document.getElementById(id);
-      if (target && content!.contains(target))
-        scrollToTarget(target, content!, false);
+      if (target && content!.contains(target)) scrollToTarget(target);
       schedule();
     }
-    content.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("scroll", schedule, { passive: true });
     const observer = new ResizeObserver(measure);
-    observer.observe(content);
+    const header = document.querySelector("header.nav");
+    if (header) observer.observe(header);
     window.addEventListener("resize", measure);
     window.addEventListener("hashchange", restoreHash);
     measure();
     restoreHash();
     return () => {
       cancelAnimationFrame(frame);
-      content.removeEventListener("scroll", schedule);
       window.removeEventListener("scroll", schedule);
       observer.disconnect();
       window.removeEventListener("resize", measure);
@@ -105,7 +94,7 @@ export default function ServiceExplorer({
     if (!target || !panel.current) return;
     setActive(id);
     history.pushState(null, "", `#${id}`);
-    scrollToTarget(target, panel.current, true);
+    scrollToTarget(target);
   }
 
   return (
@@ -162,13 +151,8 @@ export default function ServiceExplorer({
       <div
         className="service-scroll-panel"
         ref={panel}
-        tabIndex={0}
         role="region"
-        aria-label={
-          hi
-            ? "सेवाओं की जानकारी; स्क्रॉल करके आगे देखें"
-            : "Service details; scroll to explore"
-        }
+        aria-label={hi ? "सेवाओं की जानकारी" : "Service details"}
       >
         {children}
       </div>
@@ -176,29 +160,18 @@ export default function ServiceExplorer({
   );
 }
 
-function scrollToTarget(
-  target: HTMLElement,
-  panel: HTMLElement,
-  selected: boolean,
-) {
-  if (window.matchMedia("(min-width: 900px)").matches) {
-    panel.scrollTo({
-      top:
-        panel.scrollTop +
-        target.getBoundingClientRect().top -
-        panel.getBoundingClientRect().top -
-        24,
-      behavior: "instant",
-    });
-  } else {
-    const header =
-      document.querySelector("header.nav")?.getBoundingClientRect().height ||
-      88;
-    window.scrollTo({
-      top: window.scrollY + target.getBoundingClientRect().top - header - 100,
-      behavior: "instant",
-    });
-  }
-  if (selected && window.matchMedia("(min-width: 900px)").matches)
-    panel.focus({ preventScroll: true });
+function scrollOffset() {
+  const header =
+    document.querySelector("header.nav")?.getBoundingClientRect().height || 88;
+  const picker = window.matchMedia("(max-width:899px)").matches
+    ? document.querySelector(".service-mobile-picker")?.getBoundingClientRect()
+        .height || 0
+    : 0;
+  return header + picker + 24;
+}
+function scrollToTarget(target: HTMLElement) {
+  window.scrollTo({
+    top: window.scrollY + target.getBoundingClientRect().top - scrollOffset(),
+    behavior: "instant",
+  });
 }

@@ -2008,7 +2008,7 @@ main {
   }
 }
 
-/* Two-pane service directory */
+/* Full-page service directory with a sticky category index */
 .service-directory-head {
   padding: 38px 0;
 }
@@ -2024,11 +2024,14 @@ main {
   display: grid;
   grid-template-columns: 285px minmax(0, 1fr);
   gap: 26px;
-  height: clamp(420px, calc(100dvh - 350px), 740px);
+  align-items: start;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 96px;
 }
 .service-index {
+  position: sticky;
+  top: calc(var(--service-header-offset, 88px) + 24px);
+  max-height: calc(100dvh - var(--service-header-offset, 88px) - 48px);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -2087,12 +2090,10 @@ main {
 }
 .service-scroll-panel {
   min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: white;
-  scrollbar-width: thin;
   padding: 28px 30px;
   scroll-padding-top: 24px;
 }
@@ -2189,7 +2190,6 @@ main {
   .service-explorer {
     grid-template-columns: 245px minmax(0, 1fr);
     gap: 18px;
-    height: clamp(420px, calc(100dvh - 385px), 740px);
   }
   .service-scroll-panel {
     padding: 24px;
@@ -2219,7 +2219,7 @@ main {
     height: auto;
     display: block;
     margin-top: 0;
-    margin-bottom: 35px;
+    margin-bottom: 72px;
   }
   .service-index {
     display: none;
@@ -2302,15 +2302,5 @@ main {
   }
   .service-directory-head h1 {
     font-size: 35px;
-  }
-}
-.service-scroll-panel::after {
-  content: "";
-  display: block;
-  height: var(--service-end-space, 0px);
-}
-@media (max-width: 899px) {
-  .service-scroll-panel::after {
-    display: none;
   }
 }
