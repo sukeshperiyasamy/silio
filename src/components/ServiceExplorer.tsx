@@ -6,6 +6,7 @@ import type { Lang } from "@/lib/site";
 type Group = {
   id: string;
   name: string;
+  primary: boolean;
 };
 
 export default function ServiceExplorer({
@@ -113,8 +114,19 @@ export default function ServiceExplorer({
             aria-label={hi ? "सेवाओं की श्रेणी चुनें" : "Choose a service category"}
           >
             <ul>
-              {groups.map((group) => (
+              {groups.map((group, i) => (
                 <li key={group.id}>
+                  {(i === 0 || group.primary !== groups[i - 1].primary) && (
+                    <span className="service-category-label">
+                      {group.primary
+                        ? hi
+                          ? "मुख्य सेवाएँ"
+                          : "Core services"
+                        : hi
+                          ? "अतिरिक्त सेवाएँ"
+                          : "Additional services"}
+                    </span>
+                  )}
                   <a
                     href={`#${group.id}`}
                     data-index-id={group.id}
@@ -141,10 +153,27 @@ export default function ServiceExplorer({
           value={active}
           onChange={(event) => select(event.target.value)}
         >
-          {groups.map((group) => (
-            <option value={group.id} key={group.id}>
-              {group.name}
-            </option>
+          {[true, false].map((primary) => (
+            <optgroup
+              label={
+                primary
+                  ? hi
+                    ? "मुख्य सेवाएँ"
+                    : "Core services"
+                  : hi
+                    ? "अतिरिक्त सेवाएँ"
+                    : "Additional services"
+              }
+              key={String(primary)}
+            >
+              {groups
+                .filter((group) => group.primary === primary)
+                .map((group) => (
+                  <option value={group.id} key={group.id}>
+                    {group.name}
+                  </option>
+                ))}
+            </optgroup>
           ))}
         </select>
       </div>

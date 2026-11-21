@@ -1,4 +1,5 @@
 "use client";
+import { orderedPackages } from "@/lib/growth";
 import { maxModelBytes, modelExtensions } from "@/lib/printing";
 import { readCampaign } from "@/components/CampaignCapture";
 import { useState, useEffect, type FormEvent } from "react";
@@ -180,7 +181,7 @@ export default function InquiryForm({
                 {lang === "hi" ? "मुफ़्त वेबसाइट समीक्षा" : "Free website review"}
               </option>
             )}
-            {prices
+            {orderedPackages
               .filter((p) => intent !== "print" || p.cat === "3d")
               .map((p) => (
                 <option key={p.id} value={p.en}>

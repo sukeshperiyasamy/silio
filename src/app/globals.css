@@ -2333,3 +2333,25 @@ main {
     gap: 10px 22px;
   }
 }
+
+/* Core digital development takes priority over additional services. */
+.cards.core-service-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.service-category-label {
+  display: block;
+  padding: 16px 12px 8px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6a7e5b;
+}
+.service-category-nav li:first-child .service-category-label {
+  padding-top: 4px;
+}
+@media (max-width: 580px) {
+  .cards.core-service-cards {
+    grid-template-columns: 1fr;
+  }
+}

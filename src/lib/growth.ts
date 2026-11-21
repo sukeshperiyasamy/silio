@@ -2,23 +2,29 @@ import { prices, type Lang } from "./site";
 
 export const featuredIds = [
   "landing",
-  "whatsapp-catalogue",
-  "cleaning",
-  "qr-menu",
-  "maintenance",
+  "business",
+  "webapp",
+  "android",
+  "cross-platform",
 ];
+export const primaryCategoryIds = ["web", "webapps", "mobile"];
 export const categories = {
+  web: ["Website Development", "वेबसाइट डेवलपमेंट"],
+  webapps: ["Web Application Development", "वेब एप्लिकेशन डेवलपमेंट"],
+  mobile: ["Mobile App Development", "मोबाइल ऐप डेवलपमेंट"],
+  design: ["UI/UX Design", "UI/UX डिज़ाइन"],
   "3d": ["3D Design & Printing", "3D डिज़ाइन और प्रिंटिंग"],
-  web: ["Websites & web apps", "वेबसाइट और वेब ऐप"],
   shops: ["Shops & restaurants", "दुकान और रेस्टोरेंट"],
   data: ["Excel & data", "Excel और डेटा"],
   support: ["Website care", "वेबसाइट केयर"],
   business: ["Business tools", "बिज़नेस टूल"],
   marketing: ["Digital marketing", "डिजिटल मार्केटिंग"],
   automation: ["AI & automation", "AI और ऑटोमेशन"],
-  mobile: ["Mobile apps", "मोबाइल ऐप"],
-  other: ["Custom projects", "कस्टम प्रोजेक्ट"],
+  other: ["Other custom projects", "अन्य कस्टम प्रोजेक्ट"],
 } as const;
+export const orderedPackages = Object.keys(categories).flatMap((cat) =>
+  prices.filter((p) => p.cat === cat),
+);
 export const demoIds: Record<string, string> = {
   landing: "website",
   "whatsapp-catalogue": "catalogue",

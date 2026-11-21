@@ -39,7 +39,7 @@ Edit `src/lib/site.ts` for contact details, prices, package scope and translatio
 
 ## Implemented growth features
 
-- Five primary offers: business websites (₹3,999), WhatsApp catalogues (₹1,999), Excel cleanup (₹499), QR menus (₹999), and website care (₹999/month).
+- Core services: website development, web application development and mobile app development. Featured packages cover one-page websites (₹3,999), five-page websites (₹7,999), web-app MVPs (₹14,999), Android prototypes (₹9,999) and cross-platform MVPs (₹24,999). UI/UX, 3D design/printing and the remaining specialist services are additional offerings.
 - 49 scoped packages across websites, shop tools, data, care, business management, marketing, automation, mobile apps and custom projects.
 - English/Hindi interactive demos at `/en/demos` and `/hi/demos`. All business names, products and data in the demos are fictional; demo enquiries do not send messages.
 - A project estimator at `/en/estimate`, keeping one-time estimates and recurring care separate. Calculations deduplicate selected packages and use the central price list.

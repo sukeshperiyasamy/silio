@@ -6,10 +6,9 @@ import { site, messages, langValid, waLink } from "@/lib/site";
 import PriceCards from "@/components/PriceCards";
 import { notFound } from "next/navigation";
 const services = [
-  ["▥", "service1", "desc1", "data"],
-  ["⌘", "service2", "desc2", "web"],
-  ["▯", "service3", "desc3", "shops"],
-  ["✳", "service4", "desc4", "support"],
+  ["⌘", "service1", "desc1", "web"],
+  ["▤", "service2", "desc2", "webapps"],
+  ["▯", "service3", "desc3", "mobile"],
 ] as const;
 export default async function Home({
   params,
@@ -79,7 +78,7 @@ export default async function Home({
             <h2>{t.servicesTitle}</h2>
             <p className="subtitle">{t.servicesDesc}</p>
           </div>
-          <div className="cards">
+          <div className="cards core-service-cards">
             {services.map(([icon, title, desc, category]) => (
               <article className="card" key={title}>
                 <div className="circle">{icon}</div>
@@ -162,7 +161,7 @@ export default async function Home({
           <PrintVisual lang={lang} />
           <div className="section-head">
             <span className="label">
-              {lang === "hi" ? "अब 3D में भी" : "NOW IN THREE DIMENSIONS"}
+              {lang === "hi" ? "अतिरिक्त सेवाएँ / 3D" : "ADDITIONAL SERVICES / 3D"}
             </span>
             <h2>
               {lang === "hi"

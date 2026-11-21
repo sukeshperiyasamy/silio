@@ -21,8 +21,8 @@ export async function generateMetadata({
         : "Silio | Digital Solutions in Jodhpur",
     description:
       lang === "hi"
-        ? "जोधपुर में वेबसाइट, ऐप, एक्सेल डेटा और सॉफ्टवेयर सेवाएँ।"
-        : "Affordable website development, Excel data services, mobile app and SaaS prototypes in Jodhpur, Rajasthan.",
+        ? "जोधपुर में वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट। UI/UX, 3D और डेटा की अतिरिक्त सेवाएँ भी उपलब्ध हैं।"
+        : "Website, web application and mobile app development in Jodhpur, Rajasthan, with additional UI/UX, 3D and data services.",
     alternates: {
       canonical: `/${lang}`,
       languages: { en: "/en", hi: "/hi", "x-default": "/en" },

@@ -98,7 +98,7 @@ export const prices: readonly ServicePackage[] = [
     price: 14999,
     detailEn: "Small scoped MVP with one core workflow.",
     detailHi: "एक मुख्य वर्कफ़्लो वाला छोटा MVP।",
-    cat: "web",
+    cat: "webapps",
   },
   {
     id: "android",
@@ -125,7 +125,7 @@ export const prices: readonly ServicePackage[] = [
     price: 2999,
     detailEn: "Up to 5 screens and one revision.",
     detailHi: "5 स्क्रीन और एक संशोधन तक।",
-    cat: "other",
+    cat: "design",
   },
   {
     id: "ai",
@@ -143,7 +143,7 @@ export const prices: readonly ServicePackage[] = [
     price: 29999,
     detailEn: "One simple multi-user SaaS workflow.",
     detailHi: "एक सामान्य मल्टी-यूज़र SaaS वर्कफ़्लो।",
-    cat: "other",
+    cat: "webapps",
   },
   {
     id: "mentoring",
@@ -521,25 +521,25 @@ export const messages = {
     heroA: "Grow your business.",
     heroB: "Keep it simple.",
     heroDesc:
-      "Get more enquiries, show your products online and simplify everyday work. Affordable websites, catalogues and Excel solutions for Jodhpur businesses and beyond.",
+      "Website, web application and mobile app development for businesses in Jodhpur and across India. Build your online presence, improve workflows and reach customers on the devices they use.",
     heroCta: "Start your project",
     heroAlt: "Explore services",
     stats1: "Transparent starting prices",
     stats2: "English & Hindi support",
     stats3: "From Jodhpur, for everywhere",
     servicesLabel: "WHAT WE DO",
-    servicesTitle: "Practical tech. Real business outcomes.",
+    servicesTitle: "Websites. Web applications. Mobile apps.",
     servicesDesc:
-      "One freelance technology partner for your digital work — from spreadsheets to applications.",
-    service1: "Excel & Data Solutions",
+      "Our core focus is building useful digital products for your business. UI/UX, 3D design and printing, data and other specialist services are available as additional support.",
+    service1: "Website Development",
     desc1:
-      "Clean, analyze, visualize and automate spreadsheets and large datasets.",
-    service2: "Business Websites",
+      "Responsive business websites, landing pages and product catalogues that clearly introduce your business.",
+    service2: "Web Application Development",
     desc2:
-      "Business sites, product catalogues, portals and customized applications.",
-    service3: "Shop & Restaurant Tools",
+      "Scoped web applications, portals and SaaS MVPs built around your users and business workflows.",
+    service3: "Mobile App Development",
     desc3:
-      "WhatsApp catalogues, QR menus and stock trackers for everyday business.",
+      "Android and cross-platform app MVPs, with clear screen, feature and backend requirements agreed first.",
     service4: "Website Care & Support",
     desc4:
       "Keep your website current with scoped updates, deployment and ongoing support.",
@@ -564,9 +564,9 @@ export const messages = {
     footer: "Digital solutions for real-world problems.",
     disclaimer:
       "Prices are starting estimates for limited-scope work. Domain, hosting, APIs, taxes and third-party fees are extra where applicable.",
-    servicesPageTitle: "Services for every stage of your business",
+    servicesPageTitle: "Websites, web applications & mobile apps.",
     servicesPageDesc:
-      "Choose focused, budget-friendly solutions. Every project starts with a scope discussion.",
+      "Website, web application and mobile app development are our main services. Explore UI/UX, 3D design and printing, and other additional services below.",
     pricingPageTitle: "Straightforward freelance pricing",
     pricingPageDesc:
       "Transparent introductory packages. See scope limits before enquiring.",
@@ -595,7 +595,7 @@ export const messages = {
     category: "All services",
     aboutTitle: "Digital work that moves your business forward.",
     aboutBody:
-      "Silio brings practical digital solutions to small businesses, local shops and ambitious founders. Based in Jodhpur and working across India, we turn everyday challenges into thoughtful websites, useful apps and data that makes sense.",
+      "Silio focuses on website, web application and mobile app development for businesses, shops and founders. Based in Jodhpur and working across India, we also offer UI/UX, CAD design, data solutions and other supporting services.",
   },
   hi: {
     navHome: "होम",
@@ -608,22 +608,25 @@ export const messages = {
     heroA: "अपने बिज़नेस को",
     heroB: "डिजिटल बनाइए।",
     heroDesc:
-      "ज़्यादा पूछताछ पाएँ, अपने प्रोडक्ट ऑनलाइन दिखाएँ और रोज़ का काम आसान बनाएँ। जोधपुर और पूरे भारत के व्यवसायों के लिए किफ़ायती वेबसाइट, कैटलॉग और Excel समाधान।",
+      "जोधपुर और पूरे भारत के व्यवसायों के लिए वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट। ऑनलाइन उपस्थिति बनाएँ, काम के तरीके बेहतर करें और ग्राहकों तक उनके डिवाइस पर पहुँचें।",
     heroCta: "अपना प्रोजेक्ट शुरू करें",
     heroAlt: "सेवाएँ देखें",
     stats1: "स्पष्ट शुरुआती कीमतें",
     stats2: "हिंदी और अंग्रेज़ी सहायता",
     stats3: "जोधपुर से, हर जगह के लिए",
     servicesLabel: "हमारी सेवाएँ",
-    servicesTitle: "व्यावहारिक तकनीक, काम के समाधान।",
+    servicesTitle: "वेबसाइट। वेब एप्लिकेशन। मोबाइल ऐप।",
     servicesDesc:
-      "स्प्रेडशीट से लेकर ऐप तक, आपके डिजिटल काम के लिए एक भरोसेमंद फ्रीलांस टेक पार्टनर।",
-    service1: "एक्सेल और डेटा समाधान",
-    desc1: "डेटा साफ़ करना, विश्लेषण, चार्ट, डैशबोर्ड और ऑटोमेशन।",
-    service2: "वेबसाइट और वेब ऐप",
-    desc2: "बिज़नेस वेबसाइट, प्रोडक्ट कैटलॉग, पोर्टल और कस्टम ऐप।",
-    service3: "दुकान और रेस्टोरेंट समाधान",
-    desc3: "रोज़ के काम के लिए WhatsApp कैटलॉग, QR मेन्यू और स्टॉक ट्रैकर।",
+      "हमारा मुख्य ध्यान आपके व्यवसाय के लिए उपयोगी डिजिटल प्रोडक्ट बनाना है। UI/UX, 3D डिज़ाइन और प्रिंटिंग, डेटा और अन्य विशेषज्ञ सेवाएँ अतिरिक्त सहायता के रूप में उपलब्ध हैं।",
+    service1: "वेबसाइट डेवलपमेंट",
+    desc1:
+      "मोबाइल-अनुकूल बिज़नेस वेबसाइट, लैंडिंग पेज और प्रोडक्ट कैटलॉग जो आपके काम को स्पष्ट रूप से दिखाएँ।",
+    service2: "वेब एप्लिकेशन डेवलपमेंट",
+    desc2:
+      "आपके यूज़र और बिज़नेस वर्कफ़्लो के अनुसार सीमित दायरे के वेब एप्लिकेशन, पोर्टल और SaaS MVP।",
+    service3: "मोबाइल ऐप डेवलपमेंट",
+    desc3:
+      "Android और क्रॉस-प्लेटफ़ॉर्म ऐप MVP, जिनकी स्क्रीन, सुविधाएँ और बैकएंड ज़रूरतें पहले स्पष्ट रूप से तय हों।",
     service4: "वेबसाइट केयर और सहायता",
     desc4: "सीमित अपडेट, डिप्लॉयमेंट और नियमित सहायता से वेबसाइट को अपडेट रखें।",
     pricingTitle: "स्पष्ट शुरुआती कीमतें।",
@@ -645,9 +648,9 @@ export const messages = {
     footer: "वास्तविक समस्याओं के लिए डिजिटल समाधान।",
     disclaimer:
       "ये सीमित काम की शुरुआती कीमतें हैं। डोमेन, होस्टिंग, API, टैक्स और अन्य शुल्क अलग हो सकते हैं।",
-    servicesPageTitle: "आपके व्यवसाय के हर चरण के लिए सेवाएँ",
+    servicesPageTitle: "वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप।",
     servicesPageDesc:
-      "बजट-अनुकूल समाधान चुनें। हर प्रोजेक्ट से पहले काम की सीमा तय होगी।",
+      "वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट हमारी मुख्य सेवाएँ हैं। नीचे UI/UX, 3D डिज़ाइन और प्रिंटिंग तथा अन्य अतिरिक्त सेवाएँ भी देखें।",
     pricingPageTitle: "सरल फ्रीलांस प्राइसिंग",
     pricingPageDesc: "पारदर्शी शुरुआती पैकेज। पूछताछ से पहले सीमाएँ पढ़ें।",
     contactPageTitle: "मिलकर कुछ उपयोगी बनाएँ।",
@@ -672,7 +675,7 @@ export const messages = {
     category: "सभी सेवाएँ",
     aboutTitle: "आपके व्यवसाय को आगे बढ़ाने वाले डिजिटल समाधान।",
     aboutBody:
-      "Silio छोटी दुकानों, व्यवसायों और संस्थापकों के लिए सरल और उपयोगी डिजिटल समाधान बनाता है। जोधपुर से पूरे भारत में, हम वेबसाइट, ऐप और डेटा के ज़रिए आपके रोज़मर्रा के काम को आसान बनाते हैं।",
+      "Silio व्यवसायों, दुकानों और संस्थापकों के लिए वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट पर केंद्रित है। जोधपुर से पूरे भारत में हम UI/UX, CAD डिज़ाइन, डेटा समाधान और अन्य सहायक सेवाएँ भी देते हैं।",
   },
 } as const;
 export function langValid(input: string): input is Lang {

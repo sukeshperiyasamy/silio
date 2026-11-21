@@ -2,7 +2,7 @@ import ServiceExplorer from "@/components/ServiceExplorer";
 import ServicePrice from "@/components/ServicePrice";
 import { servicePath } from "@/lib/service-pages";
 import Link from "next/link";
-import { categories, quotePath } from "@/lib/growth";
+import { categories, primaryCategoryIds, quotePath } from "@/lib/growth";
 import type { Metadata } from "next";
 export async function generateMetadata({
   params,
@@ -13,8 +13,8 @@ export async function generateMetadata({
   return {
     title:
       lang === "hi"
-        ? "Silio सेवाएँ | जोधपुर में वेबसाइट, डेटा और ऐप"
-        : "Silio Services | Excel, Websites, Mobile Apps in Jodhpur",
+        ? "Silio सेवाएँ | वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप"
+        : "Silio Services | Websites, Web Applications & Mobile Apps",
     alternates: {
       canonical: `/${lang}/services`,
       languages: { en: "/en/services", hi: "/hi/services" },
@@ -32,14 +32,14 @@ export default async function Services({
   if (!langValid(lang)) notFound();
   const t = messages[lang];
   const groups = Object.keys(categories);
-  const labels = groups.map((id) =>
-    id === "web"
-      ? lang === "hi"
-        ? "वेब सेवाएँ"
-        : "Web Services"
-      : categories[id as keyof typeof categories][lang === "hi" ? 1 : 0],
+  const labels = Object.values(categories).map(
+    (labels) => labels[lang === "hi" ? 1 : 0],
   );
-  const directory = groups.map((id, i) => ({ id, name: labels[i] }));
+  const directory = groups.map((id, i) => ({
+    id,
+    name: labels[i],
+    primary: primaryCategoryIds.includes(id),
+  }));
   return (
     <>
       <section className="page-head service-directory-head">
@@ -59,7 +59,13 @@ export default async function Services({
           >
             <div className="service-group-title">
               <span className="label">
-                {lang === "hi" ? "सेवाओं की श्रेणी" : "SERVICE CATEGORY"}
+                {primaryCategoryIds.includes(group)
+                  ? lang === "hi"
+                    ? "मुख्य सेवा"
+                    : "CORE SERVICE"
+                  : lang === "hi"
+                    ? "अतिरिक्त सेवा"
+                    : "ADDITIONAL SERVICE"}
               </span>
               <h2>{labels[i]}</h2>
               {group === "3d" && (

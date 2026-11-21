@@ -5,7 +5,7 @@ export const metadata = {
   metadataBase: new URL(site.url),
   title: "Silio | Digital Solutions in Jodhpur",
   description:
-    "Affordable Excel data work, websites, web apps, mobile apps, UI/UX and AI solutions in Jodhpur, Rajasthan.",
+    "Website, web application and mobile app development in Jodhpur, Rajasthan. UI/UX, 3D design and printing, and data services are available as additional services.",
   icons: { icon: "/favicon.svg" },
 };
 export default async function RootLayout({

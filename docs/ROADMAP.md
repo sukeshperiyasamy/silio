@@ -2,7 +2,7 @@
 
 ## Website implementation
 
-Completed: bilingual positioning for small businesses, five primary offers, 49 scoped packages, dedicated bilingual pages for every service, interactive fictional demos, package comparison, project estimator, free website review requests, campaign attribution, and enquiry validation.
+Completed: bilingual positioning for small businesses, website, web application and mobile app development as the core offers, 49 scoped packages, dedicated bilingual pages for every service, interactive fictional demos, package comparison, project estimator, free website review requests, campaign attribution, and enquiry validation.
 
 Email delivery is implemented but requires owner-supplied Resend configuration. GitHub stores source code; pushing this repository does not deploy a hosted website.
 
@@ -61,3 +61,7 @@ Start with demos and conversations. The strategy's ₹3,000 monthly scenario all
 Implemented: bilingual 3D overview, seven scoped 3D services, per-service pages, indicative printing estimator and bounded model email attachments. The portfolio includes an illustrative enclosure concept only.
 
 Before accepting physical orders: confirm an actual print provider, materials, available machines, quality checks, sample approval process, delivery arrangements and the final itemized price. Do not claim an owned printer or unsupported certification. A live model viewer, automatic slicing, instant manufacturing quotes and online order payments are future work.
+
+## Current service priority
+
+The owner has confirmed website development, web application development and mobile app development as the main focus. UI/UX, 3D design/printing and other specialist services remain secondary. The earlier small-business starter offers remain available, but are no longer the main featured packages.

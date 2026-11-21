@@ -10,10 +10,6 @@ export default function Header({ lang }: { lang: Lang }) {
   const links = [
     ["", t.navHome],
     ["/services", t.navServices],
-    [
-      "/services/3d-design-printing",
-      lang === "hi" ? "3D डिज़ाइन और प्रिंटिंग" : "3D Design & Printing",
-    ],
     ["/portfolio", lang === "hi" ? "पोर्टफ़ोलियो" : "Portfolio"],
     ["/pricing", t.navPricing],
     ["/about", t.navAbout],

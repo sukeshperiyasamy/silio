@@ -2,7 +2,13 @@
 import ServicePrice from "@/components/ServicePrice";
 import { servicePath } from "@/lib/service-pages";
 import Link from "next/link";
-import { categories, featuredIds, demoIds, quotePath } from "@/lib/growth";
+import {
+  categories,
+  featuredIds,
+  demoIds,
+  quotePath,
+  orderedPackages,
+} from "@/lib/growth";
 import { useState } from "react";
 import { prices, messages, type Lang } from "@/lib/site";
 export default function PriceCards({
@@ -28,7 +34,7 @@ export default function PriceCards({
       ? featuredIds
           .map((id) => prices.find((p) => p.id === id)!)
           .slice(0, limit)
-      : prices
+      : orderedPackages
   ).filter((item) => filter === "all" || item.cat === filter);
   return (
     <>

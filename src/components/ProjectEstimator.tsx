@@ -32,6 +32,9 @@ export default function ProjectEstimator({ lang }: { lang: Lang }) {
             {[
               "landing",
               "business",
+              "webapp",
+              "android",
+              "cross-platform",
               "whatsapp-catalogue",
               "qr-menu",
               "cleaning",
