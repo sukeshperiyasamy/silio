@@ -3,7 +3,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   phone: "9943969595",
   whatsapp: "919943969595",
-  location: "Jodhpur, Rajasthan, India",
+  location: "Online & remote collaboration",
 };
 export type ServicePackage = {
   id: string;
@@ -517,16 +517,16 @@ export const messages = {
     navContact: "Contact",
     navAbout: "About",
     estimate: "Get a quote",
-    eyebrow: "Built for growing businesses in Rajasthan",
+    eyebrow: "Built for growing businesses",
     heroA: "Grow your business.",
     heroB: "Keep it simple.",
     heroDesc:
-      "Website, web application and mobile app development for businesses in Jodhpur and across India. Build your online presence, improve workflows and reach customers on the devices they use.",
+      "Website, web application and mobile app development for businesses of all sizes. Build your online presence, improve workflows and reach customers on the devices they use.",
     heroCta: "Start your project",
     heroAlt: "Explore services",
     stats1: "Transparent starting prices",
     stats2: "English & Hindi support",
-    stats3: "From Jodhpur, for everywhere",
+    stats3: "Built around your business",
     servicesLabel: "WHAT WE DO",
     servicesTitle: "Websites. Web applications. Mobile apps.",
     servicesDesc:
@@ -560,7 +560,7 @@ export const messages = {
     contactDesc:
       "Tell us what you need. We will help find an affordable, practical way to build it.",
     contactButton: "Talk on WhatsApp",
-    areas: "Serving Jodhpur, Rajasthan & remote clients across India",
+    areas: "Working with businesses, founders and teams remotely",
     footer: "Digital solutions for real-world problems.",
     disclaimer:
       "Prices are starting estimates for limited-scope work. Domain, hosting, APIs, taxes and third-party fees are extra where applicable.",
@@ -595,7 +595,7 @@ export const messages = {
     category: "All services",
     aboutTitle: "Digital work that moves your business forward.",
     aboutBody:
-      "Silio focuses on website, web application and mobile app development for businesses, shops and founders. Based in Jodhpur and working across India, we also offer UI/UX, CAD design, data solutions and other supporting services.",
+      "Silio focuses on website, web application and mobile app development for businesses, shops and founders. We also offer UI/UX, CAD design, data solutions and other supporting services.",
   },
   hi: {
     navHome: "होम",
@@ -604,16 +604,16 @@ export const messages = {
     navContact: "संपर्क",
     navAbout: "हमारे बारे में",
     estimate: "कोटेशन पाएँ",
-    eyebrow: "राजस्थान के बढ़ते व्यवसायों के लिए",
+    eyebrow: "बढ़ते व्यवसायों के लिए",
     heroA: "अपने बिज़नेस को",
     heroB: "डिजिटल बनाइए।",
     heroDesc:
-      "जोधपुर और पूरे भारत के व्यवसायों के लिए वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट। ऑनलाइन उपस्थिति बनाएँ, काम के तरीके बेहतर करें और ग्राहकों तक उनके डिवाइस पर पहुँचें।",
+      "हर तरह के व्यवसायों के लिए वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट। ऑनलाइन उपस्थिति बनाएँ, काम के तरीके बेहतर करें और ग्राहकों तक उनके डिवाइस पर पहुँचें।",
     heroCta: "अपना प्रोजेक्ट शुरू करें",
     heroAlt: "सेवाएँ देखें",
     stats1: "स्पष्ट शुरुआती कीमतें",
     stats2: "हिंदी और अंग्रेज़ी सहायता",
-    stats3: "जोधपुर से, हर जगह के लिए",
+    stats3: "आपके व्यवसाय की ज़रूरतों के अनुसार",
     servicesLabel: "हमारी सेवाएँ",
     servicesTitle: "वेबसाइट। वेब एप्लिकेशन। मोबाइल ऐप।",
     servicesDesc:
@@ -644,7 +644,7 @@ export const messages = {
     contactTitle: "कोई प्रोजेक्ट है?",
     contactDesc: "हमें अपनी ज़रूरत बताएँ। हम किफ़ायती और व्यावहारिक समाधान ढूँढेंगे।",
     contactButton: "WhatsApp पर बात करें",
-    areas: "जोधपुर, राजस्थान और पूरे भारत में ऑनलाइन सेवाएँ",
+    areas: "व्यवसायों, संस्थापकों और टीमों के लिए ऑनलाइन सेवाएँ",
     footer: "वास्तविक समस्याओं के लिए डिजिटल समाधान।",
     disclaimer:
       "ये सीमित काम की शुरुआती कीमतें हैं। डोमेन, होस्टिंग, API, टैक्स और अन्य शुल्क अलग हो सकते हैं।",
@@ -675,7 +675,7 @@ export const messages = {
     category: "सभी सेवाएँ",
     aboutTitle: "आपके व्यवसाय को आगे बढ़ाने वाले डिजिटल समाधान।",
     aboutBody:
-      "Silio व्यवसायों, दुकानों और संस्थापकों के लिए वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट पर केंद्रित है। जोधपुर से पूरे भारत में हम UI/UX, CAD डिज़ाइन, डेटा समाधान और अन्य सहायक सेवाएँ भी देते हैं।",
+      "Silio व्यवसायों, दुकानों और संस्थापकों के लिए वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट पर केंद्रित है। हम UI/UX, CAD डिज़ाइन, डेटा समाधान और अन्य सहायक सेवाएँ भी देते हैं।",
   },
 } as const;
 export function langValid(input: string): input is Lang {

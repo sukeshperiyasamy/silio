@@ -8,8 +8,8 @@ export async function generateMetadata({
   return {
     title:
       lang === "hi"
-        ? "Silio से संपर्क करें | जोधपुर"
-        : "Contact Silio | Web, App & Excel Projects in Jodhpur",
+        ? "Silio से संपर्क करें"
+        : "Contact Silio | Web, App & Excel Projects",
     alternates: {
       canonical: `/${lang}/contact`,
       languages: { en: "/en/contact", hi: "/hi/contact" },
@@ -50,9 +50,9 @@ export default async function Contact({
               <a href={`tel:+91${site.phone}`}>+91 {site.phone}</a>
             </p>
             <p>
-              <strong>Location</strong>
+              <strong>{lang === "hi" ? "सहयोग" : "Collaboration"}</strong>
               <br />
-              {site.location}
+              {lang === "hi" ? "ऑनलाइन और रिमोट सहयोग" : site.location}
             </p>
             <p className="muted">{t.response}</p>
             <a

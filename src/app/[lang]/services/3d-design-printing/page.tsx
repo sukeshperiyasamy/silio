@@ -16,8 +16,8 @@ export async function generateMetadata({
   const { lang } = await params;
   const title =
       lang === "hi"
-        ? "SILIO | जोधपुर में 3D डिज़ाइन और प्रिंटिंग"
-        : "SILIO | 3D Design & Printing in Jodhpur",
+        ? "SILIO | 3D डिज़ाइन और प्रिंटिंग"
+        : "SILIO | 3D Design & Printing",
     description =
       lang === "hi"
         ? "CAD मॉडलिंग, STL रिपेयर, इलेक्ट्रॉनिक्स एनक्लोज़र और PLA प्रिंटिंग। स्कोप की समीक्षा और अलग-अलग खर्च के साथ कोटेशन माँगें।"

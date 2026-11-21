@@ -46,7 +46,7 @@ export default function GrowthSections({ lang }: { lang: Lang }) {
         <div className="container">
           <div className="section-head">
             <span className="label">
-              {hi ? "जोधपुर के व्यवसायों के लिए" : "BUILT AROUND YOUR BUSINESS"}
+              {hi ? "आपके व्यवसाय के लिए" : "BUILT AROUND YOUR BUSINESS"}
             </span>
             <h2>
               {hi

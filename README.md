@@ -1,6 +1,6 @@
 # Silio
 
-Bilingual digital services website for Silio, based in Jodhpur, Rajasthan. Built with Next.js, React and TypeScript.
+Bilingual digital services website for Silio, built for businesses and teams. Built with Next.js, React and TypeScript.
 
 ## Run locally
 
@@ -43,7 +43,7 @@ Edit `src/lib/site.ts` for contact details, prices, package scope and translatio
 - 49 scoped packages across websites, shop tools, data, care, business management, marketing, automation, mobile apps and custom projects.
 - English/Hindi interactive demos at `/en/demos` and `/hi/demos`. All business names, products and data in the demos are fictional; demo enquiries do not send messages.
 - A project estimator at `/en/estimate`, keeping one-time estimates and recurring care separate. Calculations deduplicate selected packages and use the central price list.
-- A comparison table on pricing, 49 dedicated Jodhpur-focused service pages, and a free human website review request at `/en/review`.
+- A comparison table on pricing, 49 dedicated service pages with location-neutral copy, and a free human website review request at `/en/review`.
 - Quote buttons prefill the chosen service. Estimator enquiries also prefill the proposed scope and starting budget.
 - Allowlisted UTM campaign tags remain in browser session storage and accompany submitted enquiries. No third-party analytics script is added. Privacy copy explains this behaviour.
 - Brand naming is recorded in `AGENTS.md`: **Silio**.
@@ -85,3 +85,5 @@ Deploy to a host that supports the Next.js Node runtime; static-only hosting can
 See `docs/ROADMAP.md` for remaining operational tasks and the future authenticated CRM phase.
 
 The original independent bilingual starter has been integrated and rebranded as Silio. Unused downloaded template code, demo assets and duplicate starter files have been removed. Next.js remains on the supplied version 15 family, updated to its patched release; the PostCSS override keeps its transitive dependency patched.
+
+Public copy and metadata are location-neutral. Original service URL slugs remain unchanged to preserve existing marketing links.

@@ -12,7 +12,9 @@ export default function Footer({ lang }: { lang: Lang }) {
                 silio<span>✳</span>
               </Link>
               <p>{t.footer}</p>
-              <small>{site.location}</small>
+              <small>
+                {lang === "hi" ? "ऑनलाइन और रिमोट सहयोग" : site.location}
+              </small>
             </div>
             <div className="footer-services">
               <strong>{t.navServices}</strong>
@@ -50,7 +52,9 @@ export default function Footer({ lang }: { lang: Lang }) {
               >
                 WhatsApp
               </a>
-              <small>Jodhpur, Rajasthan</small>
+              <small>
+                {lang === "hi" ? "ऑनलाइन पूछताछ" : "Online enquiries"}
+              </small>
             </div>
           </div>
           <div className="footer-bottom">

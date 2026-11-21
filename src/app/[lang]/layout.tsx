@@ -16,13 +16,11 @@ export async function generateMetadata({
   if (!langValid(lang)) return {};
   return {
     title:
-      lang === "hi"
-        ? "Silio | जोधपुर में डिजिटल समाधान"
-        : "Silio | Digital Solutions in Jodhpur",
+      lang === "hi" ? "Silio | डिजिटल समाधान" : "Silio | Digital Solutions",
     description:
       lang === "hi"
-        ? "जोधपुर में वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट। UI/UX, 3D और डेटा की अतिरिक्त सेवाएँ भी उपलब्ध हैं।"
-        : "Website, web application and mobile app development in Jodhpur, Rajasthan, with additional UI/UX, 3D and data services.",
+        ? "वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट। UI/UX, 3D और डेटा की अतिरिक्त सेवाएँ भी उपलब्ध हैं।"
+        : "Website, web application and mobile app development, with additional UI/UX, 3D and data services.",
     alternates: {
       canonical: `/${lang}`,
       languages: { en: "/en", hi: "/hi", "x-default": "/en" },

@@ -4,8 +4,8 @@ const featuredServicePages = [
   {
     id: "landing",
     slug: "business-websites-jodhpur",
-    en: "Business websites in Jodhpur",
-    hi: "जोधपुर में बिज़नेस वेबसाइट",
+    en: "Business websites",
+    hi: "बिज़नेस वेबसाइट",
     audienceEn:
       "For local shops, independent professionals and small teams who need a clear introduction online.",
     audienceHi:
@@ -24,8 +24,8 @@ const featuredServicePages = [
   {
     id: "whatsapp-catalogue",
     slug: "whatsapp-catalogues-jodhpur",
-    en: "WhatsApp product catalogues in Jodhpur",
-    hi: "जोधपुर में WhatsApp प्रोडक्ट कैटलॉग",
+    en: "WhatsApp product catalogues",
+    hi: "WhatsApp प्रोडक्ट कैटलॉग",
     audienceEn:
       "For furniture makers, handicraft sellers and retailers who want buyers to browse products before getting in touch.",
     audienceHi:
@@ -44,8 +44,8 @@ const featuredServicePages = [
   {
     id: "cleaning",
     slug: "excel-services-jodhpur",
-    en: "Excel data cleanup in Jodhpur",
-    hi: "जोधपुर में Excel डेटा क्लीनअप",
+    en: "Excel data cleanup",
+    hi: "Excel डेटा क्लीनअप",
     audienceEn:
       "For shop owners and office teams working with inconsistent customer, stock or sales spreadsheets.",
     audienceHi:
@@ -64,8 +64,8 @@ const featuredServicePages = [
   {
     id: "qr-menu",
     slug: "qr-menus-jodhpur",
-    en: "QR restaurant menus in Jodhpur",
-    hi: "जोधपुर में QR रेस्टोरेंट मेन्यू",
+    en: "QR restaurant menus",
+    hi: "QR रेस्टोरेंट मेन्यू",
     audienceEn:
       "For cafés, restaurants and small hospitality businesses that need an easy-to-read menu on a phone.",
     audienceHi:
@@ -84,8 +84,8 @@ const featuredServicePages = [
   {
     id: "maintenance",
     slug: "website-maintenance-jodhpur",
-    en: "Website maintenance in Jodhpur",
-    hi: "जोधपुर में वेबसाइट मेंटेनेंस",
+    en: "Website maintenance",
+    hi: "वेबसाइट मेंटेनेंस",
     audienceEn:
       "For small businesses with an existing website that needs occasional content updates and technical attention.",
     audienceHi:
@@ -158,8 +158,8 @@ export const servicePages = [
       return {
         id,
         slug,
-        en: `${p.en} in Jodhpur`,
-        hi: `जोधपुर में ${p.hi}`,
+        en: p.en,
+        hi: p.hi,
         audienceEn,
         audienceHi,
         inputsEn,

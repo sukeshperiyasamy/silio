@@ -11,3 +11,5 @@
 - 3D printing is planned through an external provider; do not claim an in-house printer or validated engineering tolerances. Keep per-gram rates, minimum print charges and design costs distinct.
 
 - Primary services are website development, web application development and mobile app development. UI/UX design, 3D design/printing and other specialist services are secondary. Keep navigation, featured offers and marketing copy consistent with this priority.
+
+- Keep public copy and SEO metadata location-neutral. Do not target only Jodhpur or Rajasthan. Preserve existing marketing URLs while removing geographic restrictions from visible text and structured data.

@@ -395,8 +395,8 @@ export default function BusinessDemos({ lang }: { lang: Lang }) {
               {websiteTab === "about" ? (
                 <p>
                   {hi
-                    ? "एक काल्पनिक जोधपुर इंटीरियर स्टूडियो का परिचय। अपने असली व्यवसाय की कहानी यहाँ साझा करें।"
-                    : "A fictional Jodhpur interiors studio. Your website can tell your real business story here."}
+                    ? "एक काल्पनिक इंटीरियर स्टूडियो का परिचय। अपने असली व्यवसाय की कहानी यहाँ साझा करें।"
+                    : "A fictional interiors studio. Your website can tell your real business story here."}
                 </p>
               ) : websiteTab === "services" ? (
                 <ul>

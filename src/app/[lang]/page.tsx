@@ -25,16 +25,6 @@ export default async function Home({
     url: site.url,
     telephone: `+91${site.phone}`,
     description: t.heroDesc,
-    areaServed: [
-      { "@type": "City", name: "Jodhpur" },
-      { "@type": "AdministrativeArea", name: "Rajasthan" },
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Jodhpur",
-      addressRegion: "Rajasthan",
-      addressCountry: "IN",
-    },
   };
   return (
     <>

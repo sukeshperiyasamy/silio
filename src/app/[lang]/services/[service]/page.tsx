@@ -64,10 +64,6 @@ export default async function ServicePage({
         description: hi ? page.audienceHi : page.audienceEn,
         url,
         provider: { "@type": "Organization", name: "SILIO", url: site.url },
-        areaServed: [
-          { "@type": "City", name: "Jodhpur" },
-          { "@type": "Country", name: "India" },
-        ],
       },
       {
         "@type": "BreadcrumbList",
@@ -118,7 +114,7 @@ export default async function ServicePage({
             <span>{hi ? p.hi : p.en}</span>
           </nav>
           <span className="eyebrow">
-            SILIO / {hi ? "जोधपुर और पूरे भारत में" : "JODHPUR & ACROSS INDIA"}
+            SILIO / {hi ? "आपके व्यवसाय के लिए" : "BUILT AROUND YOUR BUSINESS"}
           </span>
           <h1>{title}</h1>
           <p>{hi ? page.audienceHi : page.audienceEn}</p>

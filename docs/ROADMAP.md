@@ -11,7 +11,7 @@ Email delivery is implemented but requires owner-supplied Resend configuration. 
 - Set `NEXT_PUBLIC_SITE_URL` to the domain you own and configure hosting and DNS.
 - Configure the three Resend environment variables using a verified sender.
 - Add host-level rate limiting / bot protection and test a real enquiry to your mailbox.
-- Confirm the phone number, Jodhpur location, price scopes, translations, retention policy and support capacity.
+- Confirm the phone number, service availability, price scopes, translations, retention policy and support capacity.
 - Set up the real WhatsApp Business, Instagram and Facebook accounts. Add social links only once actual profiles exist.
 - Review eligibility before applying for a Google Business Profile. No profile or ad account has been created by this implementation.
 - Prepare permission-based local demonstrations and a brochure using the finalized offers. No campaigns, outreach messages or ad spend have been initiated.

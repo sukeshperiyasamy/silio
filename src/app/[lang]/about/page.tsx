@@ -12,8 +12,8 @@ export async function generateMetadata({
     title: lang === "hi" ? "SILIO | हमारे बारे में" : "SILIO | About our approach",
     description:
       lang === "hi"
-        ? "जोधपुर से डिजिटल सेवाएँ, CAD डिज़ाइन और समीक्षा के बाद भौतिक प्रोटोटाइप।"
-        : "Practical digital services, CAD design and reviewed physical prototyping from Jodhpur.",
+        ? "व्यवसायों और मेकर्स के लिए डिजिटल सेवाएँ, CAD डिज़ाइन और समीक्षा के बाद भौतिक प्रोटोटाइप।"
+        : "Practical digital services, CAD design and reviewed physical prototyping for businesses and makers.",
     alternates: {
       canonical: `/${lang}/about`,
       languages: { en: "/en/about", hi: "/hi/about" },
@@ -41,8 +41,8 @@ export default async function About({
           </h1>
           <p>
             {hi
-              ? "जोधपुर से, स्थानीय दुकानों, संस्थापकों, मेकर्स और पूरे भारत की टीमों के लिए।"
-              : "From Jodhpur, for local shops, founders, makers and teams across India."}
+              ? "व्यवसायों, संस्थापकों, मेकर्स और टीमों के लिए, जहाँ भी वे काम करते हों।"
+              : "For businesses, founders, makers and teams, wherever they work."}
           </p>
         </div>
       </section>
