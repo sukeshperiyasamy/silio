@@ -2007,3 +2007,317 @@ main {
     gap: 32px;
   }
 }
+
+/* Two-pane service directory */
+.service-directory-head {
+  padding: 38px 0;
+}
+.service-directory-head h1 {
+  font-size: clamp(34px, 3.5vw, 47px);
+  margin-bottom: 14px;
+}
+.service-directory-head p {
+  font-size: 16px;
+  max-width: 800px;
+}
+.service-explorer {
+  display: grid;
+  grid-template-columns: 285px minmax(0, 1fr);
+  gap: 26px;
+  height: clamp(420px, calc(100dvh - 350px), 740px);
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.service-index {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+.service-index-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19px 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.service-index-heading > span {
+  font-size: 12px;
+  color: #5c7350;
+  background: #edf3e7;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.service-index-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 8px 10px 18px;
+  flex: 1;
+  min-height: 0;
+}
+.service-index-group h2 {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: #6a7e5b;
+  margin: 24px 10px 8px;
+}
+.service-index-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.service-index-group a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 7px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-left: 3px solid transparent;
+  color: #53634e;
+}
+.service-index-group a:hover {
+  background: #f0f4e9;
+  color: var(--dark);
+}
+.service-index-group a[aria-current="location"] {
+  background: #e8f2da;
+  border-left-color: #62863d;
+  color: #213c24;
+  font-weight: 700;
+}
+.service-scroll-panel {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+  scrollbar-width: thin;
+  padding: 28px 30px;
+  scroll-padding-top: 24px;
+}
+.service-scroll-panel:focus-visible {
+  outline: 2px solid #7f9e66;
+  outline-offset: 3px;
+}
+.service-directory-group {
+  padding: 0;
+  scroll-margin-top: 24px;
+}
+.service-group-title {
+  padding: 2px 0 24px;
+  border-bottom: 1px solid var(--line);
+}
+.service-group-title .label {
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+.service-group-title h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+.service-group-title .text-link {
+  font-size: 13px;
+}
+.service-directory-group + .service-directory-group {
+  margin-top: 45px;
+}
+.service-directory-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 155px;
+  gap: 25px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 24px;
+}
+.service-directory-copy > .label {
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  margin-bottom: 11px;
+}
+.service-directory-copy h3 {
+  font-size: 27px;
+  margin-bottom: 15px;
+}
+.service-directory-copy > p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 0;
+  max-width: 510px;
+}
+.service-directory-copy .button-row {
+  margin-top: 24px;
+  align-items: center;
+  gap: 20px;
+}
+.service-directory-copy .pill {
+  font-size: 13px;
+  padding: 11px 16px;
+}
+.service-directory-copy .text-link {
+  font-size: 13px;
+}
+.service-directory-price {
+  padding-top: 26px;
+}
+.service-directory-price > small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.service-directory-price .amount {
+  font-size: 33px;
+  line-height: 1.3;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.service-directory-price .quote-amount {
+  font-size: 25px;
+}
+.service-directory-price .price-period {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.service-directory-price .minimum-charge {
+  margin: 0;
+  font-size: 12px !important;
+}
+.service-mobile-picker {
+  display: none;
+}
+@media (min-width: 900px) and (max-width: 1100px) {
+  .service-explorer {
+    grid-template-columns: 245px minmax(0, 1fr);
+    gap: 18px;
+    height: clamp(420px, calc(100dvh - 385px), 740px);
+  }
+  .service-scroll-panel {
+    padding: 24px;
+  }
+  .service-directory-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .service-directory-price {
+    padding-top: 0;
+    grid-row: 1;
+  }
+  .service-directory-price .amount {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+  }
+  .service-directory-price .minimum-charge {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 899px) {
+  .service-directory-head {
+    padding: 32px 0;
+  }
+  .service-explorer {
+    height: auto;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 35px;
+  }
+  .service-index {
+    display: none;
+  }
+  .service-mobile-picker {
+    display: block;
+    position: sticky;
+    top: var(--service-header-offset, 116px);
+    z-index: 6;
+    background: var(--bg);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .service-mobile-picker label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+  .service-mobile-picker select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdcbb2;
+    border-radius: 8px;
+    background: white;
+    color: var(--fg);
+    font-size: 15px;
+  }
+  .service-scroll-panel {
+    overflow: visible;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    padding: 24px 0;
+    outline: none;
+  }
+  .service-directory-item {
+    scroll-margin-top: 220px;
+    grid-template-columns: minmax(0, 1fr) 140px;
+  }
+  .service-group-title h2 {
+    font-size: 29px;
+  }
+  .service-directory-copy h3 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 580px) {
+  .service-directory-item {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 28px 0;
+  }
+  .service-directory-price {
+    padding: 0 0 12px;
+    grid-row: 1;
+  }
+  .service-directory-price .amount {
+    font-size: 30px;
+    display: inline-block;
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+  }
+  .service-directory-price .quote-amount {
+    font-size: 24px;
+  }
+  .service-directory-price .minimum-charge {
+    display: block;
+    margin-top: 6px;
+  }
+  .service-directory-copy > .label {
+    display: none;
+  }
+  .service-directory-copy .button-row {
+    gap: 18px;
+  }
+  .service-group-title {
+    padding-bottom: 20px;
+  }
+  .service-directory-head h1 {
+    font-size: 35px;
+  }
+}
+.service-scroll-panel::after {
+  content: "";
+  display: block;
+  height: var(--service-end-space, 0px);
+}
+@media (max-width: 899px) {
+  .service-scroll-panel::after {
+    display: none;
+  }
+}
