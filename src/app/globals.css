@@ -2060,33 +2060,26 @@ main {
   flex: 1;
   min-height: 0;
 }
-.service-index-group h2 {
-  font-size: 11px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  line-height: 1.5;
-  color: #6a7e5b;
-  margin: 24px 10px 8px;
-}
-.service-index-group ul {
+.service-category-nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 6px 0;
 }
-.service-index-group a {
+.service-category-nav a {
   display: block;
-  padding: 10px 12px;
+  padding: 14px 12px;
   border-radius: 7px;
   font-size: 14px;
   line-height: 1.5;
   border-left: 3px solid transparent;
   color: #53634e;
+  margin-bottom: 5px;
 }
-.service-index-group a:hover {
+.service-category-nav a:hover {
   background: #f0f4e9;
   color: var(--dark);
 }
-.service-index-group a[aria-current="location"] {
+.service-category-nav a[aria-current="location"] {
   background: #e8f2da;
   border-left-color: #62863d;
   color: #213c24;

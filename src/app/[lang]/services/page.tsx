@@ -32,16 +32,14 @@ export default async function Services({
   if (!langValid(lang)) notFound();
   const t = messages[lang];
   const groups = Object.keys(categories);
-  const labels = Object.values(categories).map(
-    (labels) => labels[lang === "hi" ? 1 : 0],
+  const labels = groups.map((id) =>
+    id === "web"
+      ? lang === "hi"
+        ? "वेब सेवाएँ"
+        : "Web Services"
+      : categories[id as keyof typeof categories][lang === "hi" ? 1 : 0],
   );
-  const directory = groups.map((id, i) => ({
-    id,
-    name: labels[i],
-    items: prices
-      .filter((p) => p.cat === id)
-      .map((p) => ({ id: p.id, name: lang === "hi" ? p.hi : p.en })),
-  }));
+  const directory = groups.map((id, i) => ({ id, name: labels[i] }));
   return (
     <>
       <section className="page-head service-directory-head">
@@ -53,7 +51,12 @@ export default async function Services({
       </section>
       <ServiceExplorer groups={directory} lang={lang}>
         {groups.map((group, i) => (
-          <section id={group} className="service-directory-group" key={group}>
+          <section
+            id={group}
+            data-service-category={group}
+            className="service-directory-group"
+            key={group}
+          >
             <div className="service-group-title">
               <span className="label">
                 {lang === "hi" ? "सेवाओं की श्रेणी" : "SERVICE CATEGORY"}

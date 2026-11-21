@@ -6,7 +6,6 @@ import type { Lang } from "@/lib/site";
 type Group = {
   id: string;
   name: string;
-  items: { id: string; name: string }[];
 };
 
 export default function ServiceExplorer({
@@ -18,7 +17,7 @@ export default function ServiceExplorer({
   lang: Lang;
   children: ReactNode;
 }) {
-  const [active, setActive] = useState(groups[0]?.items[0]?.id || "");
+  const [active, setActive] = useState(groups[0]?.id || "");
   const panel = useRef<HTMLDivElement>(null),
     index = useRef<HTMLDivElement>(null);
   const hi = lang === "hi";
@@ -27,7 +26,7 @@ export default function ServiceExplorer({
     const content = panel.current;
     if (!content) return;
     const sections = Array.from(
-      content.querySelectorAll<HTMLElement>("[data-service-id]"),
+      content.querySelectorAll<HTMLElement>("[data-service-category]"),
     );
     let frame = 0;
     function update() {
@@ -42,7 +41,7 @@ export default function ServiceExplorer({
         if (section.getBoundingClientRect().top <= boundary) current = section;
         else break;
       }
-      if (current) setActive(current.dataset.serviceId!);
+      if (current) setActive(current.dataset.serviceCategory!);
     }
     function schedule() {
       if (!frame) frame = requestAnimationFrame(update);
@@ -102,10 +101,10 @@ export default function ServiceExplorer({
   }, [active]);
 
   function select(id: string) {
-    const target = document.getElementById(`service-${id}`);
+    const target = document.getElementById(id);
     if (!target || !panel.current) return;
     setActive(id);
-    history.pushState(null, "", `#service-${id}`);
+    history.pushState(null, "", `#${id}`);
     scrollToTarget(target, panel.current, true);
   }
 
@@ -116,41 +115,37 @@ export default function ServiceExplorer({
         aria-label={hi ? "सेवाओं की सूची" : "Service directory"}
       >
         <div className="service-index-heading">
-          <strong>{hi ? "सभी सेवाएँ" : "All services"}</strong>
-          <span>{groups.reduce((n, g) => n + g.items.length, 0)}</span>
+          <strong>{hi ? "सेवाओं की श्रेणियाँ" : "Service categories"}</strong>
+          <span>{groups.length}</span>
         </div>
         <div className="service-index-scroll" ref={index}>
-          <nav aria-label={hi ? "कोई सेवा चुनें" : "Choose a service"}>
-            {groups.map((group) => (
-              <div className="service-index-group" key={group.id}>
-                <h2>{group.name}</h2>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item.id}>
-                      <a
-                        href={`#service-${item.id}`}
-                        data-index-id={item.id}
-                        aria-current={
-                          active === item.id ? "location" : undefined
-                        }
-                        onClick={(event) => {
-                          event.preventDefault();
-                          select(item.id);
-                        }}
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <nav
+            className="service-category-nav"
+            aria-label={hi ? "सेवाओं की श्रेणी चुनें" : "Choose a service category"}
+          >
+            <ul>
+              {groups.map((group) => (
+                <li key={group.id}>
+                  <a
+                    href={`#${group.id}`}
+                    data-index-id={group.id}
+                    aria-current={active === group.id ? "location" : undefined}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      select(group.id);
+                    }}
+                  >
+                    {group.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </nav>
         </div>
       </aside>
       <div className="service-mobile-picker">
         <label htmlFor="service-jump">
-          {hi ? "सेवा चुनें" : "Jump to a service"}
+          {hi ? "श्रेणी चुनें" : "Jump to a category"}
         </label>
         <select
           id="service-jump"
@@ -158,13 +153,9 @@ export default function ServiceExplorer({
           onChange={(event) => select(event.target.value)}
         >
           {groups.map((group) => (
-            <optgroup label={group.name} key={group.id}>
-              {group.items.map((item) => (
-                <option value={item.id} key={item.id}>
-                  {item.name}
-                </option>
-              ))}
-            </optgroup>
+            <option value={group.id} key={group.id}>
+              {group.name}
+            </option>
           ))}
         </select>
       </div>
