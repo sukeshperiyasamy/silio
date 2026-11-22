@@ -26,7 +26,15 @@ export async function POST(request: Request) {
         { _id: new ObjectId(id) },
         { $set: { status, updatedAt: new Date() } },
       );
-    return NextResponse.redirect(new URL("/admin", request.url), 303);
+    return NextResponse.redirect(
+      new URL(
+        form.get("returnTo") === "/admin/enquiries"
+          ? "/admin/enquiries"
+          : "/admin",
+        request.url,
+      ),
+      303,
+    );
   } catch {
     return new NextResponse(null, { status: 503 });
   }

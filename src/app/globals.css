@@ -2516,3 +2516,27 @@ main {
     flex-wrap: wrap;
   }
 }
+
+.admin-tabs {
+  margin-bottom: 30px;
+}
+.admin-archive-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 18px;
+  align-items: end;
+  margin-top: 30px;
+}
+.admin-dashboard .scope-note h2 {
+  font-size: 26px;
+}
+@media (max-width: 800px) {
+  .admin-archive-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 580px) {
+  .admin-archive-filters {
+    grid-template-columns: 1fr;
+  }
+}
