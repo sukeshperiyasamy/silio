@@ -69,7 +69,7 @@ Copy `.env.example` to `.env.local`, then set:
 - `INQUIRY_TO_EMAIL`: the recipient mailbox.
 - `INQUIRY_FROM_EMAIL`: a sender on your verified Resend domain.
 
-Restart the server after changing environment variables. Without email configuration, the form displays an honest delivery error and offers WhatsApp. No API key is exposed to the browser. The endpoint validates payloads and includes a honeypot; add deployment-level rate limiting and spam protection before accepting public traffic. Review the privacy copy against your final hosting and data-retention practices before launch.
+Restart the server after changing environment variables. With MongoDB configured, forms are saved even without email delivery. If neither storage nor email is configured, the form reports that delivery is unavailable and offers WhatsApp. No API key is exposed to the browser. The endpoint validates payloads and includes a honeypot; add deployment-level rate limiting and spam protection before accepting public traffic. Review the privacy copy against your final hosting and data-retention practices before launch.
 
 ## Validation and production
 
@@ -87,3 +87,13 @@ See `docs/ROADMAP.md` for remaining operational tasks and the future authenticat
 The original independent bilingual starter has been integrated and rebranded as Silio. Unused downloaded template code, demo assets and duplicate starter files have been removed. Next.js remains on the supplied version 15 family, updated to its patched release; the PostCSS override keeps its transitive dependency patched.
 
 Public copy and metadata are location-neutral. Original service URL slugs remain unchanged to preserve existing marketing links.
+
+## Private enquiries and first-party analytics
+
+Set server-only `MONGODB_URI`, `MONGODB_DB`, `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET`. Local values are in the ignored `.env.local`; never commit this file or share its contents. Node.js 22+ is required. Initialize indexes with `npm run db:setup`. MongoDB Atlas must allow the server network address.
+
+Open `/admin` and sign in with `ADMIN_PASSWORD`. The dashboard shows page views, anonymous browser-tab sessions, approximate elapsed time, daily traffic, sources, and paginated enquiries. Filters cover 1, 7, 30 or 90 days and individual pages. Enquiry statuses can be updated and model files downloaded after authentication. The admin area is not linked publicly or indexed. Sessions last eight hours in signed HttpOnly cookies; set a strong password and rotate the session secret to invalidate sessions. Login, analytics and enquiry endpoints have database-backed request limits; configure trusted proxy headers and deployment-level rate limiting for public production use.
+
+Forms are saved in MongoDB before optional email delivery. If email fails after storage succeeds, the enquiry is still accepted and its delivery state is visible to the admin. Models are stored privately with their enquiry, not in public assets. Back up and manage retention of enquiries and files according to your business policy; no automatic enquiry deletion is configured.
+
+Page analytics use first-party requests, strip query strings and store no raw IP address, fingerprint or advertising identifier. A random session ID lasts for the browser tab. Do Not Track and Global Privacy Control disable browser analytics. Page events expire after approximately 90 days using a MongoDB TTL index; deletion timing is managed by MongoDB. Traffic counts are indicative rather than billing-grade. Background elapsed time can be included, and missing exit events appear as zero seconds. Browser blockers or disabled storage may prevent measurement. Set these environment variables and run index setup on the hosting environment too: GitHub source alone does not configure production secrets or deploy the site.

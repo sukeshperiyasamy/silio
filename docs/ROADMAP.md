@@ -48,7 +48,7 @@ Email delivery is implemented but requires owner-supplied Resend configuration. 
 
 ## Future private CRM phase
 
-The supplied strategy describes a private admin area as a later phase. It is not implemented or exposed in the public site. It needs a chosen authentication provider, persistent database, authorized admin users and a retention policy before accepting real customer records.
+The supplied strategy describes a private admin area as a later phase. A protected `/admin` dashboard now implements enquiry capture, status tracking, file downloads and first-party analytics. Full quotations, projects, invoices and scheduled follow-ups remain future work. MongoDB and password-protected admin sessions are configured locally; production needs its own secrets, trusted network access and an enquiry retention policy.
 
 Suggested records: enquiries; source campaign tags; new/contacted/quoted/won/lost status; consent-aware follow-up dates; quotations; projects; and invoices. Do not store these in public assets, source control, browser-only admin dashboards or an unauthenticated API.
 

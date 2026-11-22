@@ -36,12 +36,27 @@ export default async function Privacy({
         <div className="container" style={{ maxWidth: 760 }}>
           <p>{t.privacyBody}</p>
           <h2 style={{ fontSize: 28 }}>
+            {hi
+              ? "पूछताछ और अपनी साइट के आँकड़े"
+              : "Enquiries and first-party analytics"}
+          </h2>
+          <p>
+            {hi
+              ? "पूछताछ की जानकारी और वैकल्पिक मॉडल फ़ाइल MongoDB में रखी जाती हैं, ताकि हमारी अधिकृत टीम जवाब दे सके। ईमेल सेवा चालू होने पर उसकी एक कॉपी ईमेल से भी भेजी जा सकती है।"
+              : "Enquiry details and optional model attachments are stored in MongoDB for our authorized team to respond. When email delivery is enabled, a copy may also be sent by email."}
+          </p>
+          <p>
+            {hi
+              ? "हम पेज के नाम, आने के स्रोत, कैंपेन और पेज पर बीते समय के अनुमान को अपने सिस्टम में रिकॉर्ड करते हैं। ब्राउज़र के एक टैब के लिए एक अनाम सत्र पहचान रखी जाती है; पूरे URL के क्वेरी पैरामीटर, विज्ञापन पहचान या विज़िटर का कच्चा IP पता पेज आँकड़ों में नहीं रखा जाता। Do Not Track का सम्मान किया जाता है। पेज आँकड़े लगभग 90 दिन रखे जाते हैं।"
+              : "We record page paths, traffic sources, campaigns and approximate elapsed time in our own analytics system. An anonymous session identifier lasts for a browser-tab session. Full URL queries, advertising identifiers and raw visitor IP addresses are not stored in page analytics. We honor Do Not Track. Page analytics are retained for approximately 90 days."}
+          </p>
+          <h2 style={{ fontSize: 28 }}>
             {hi ? "3D मॉडल फ़ाइलें" : "3D model files"}
           </h2>
           <p>
             {hi
-              ? "अगर आप मॉडल अटैच करते हैं, तो ईमेल सेवा चालू होने पर वह पूछताछ के साथ भेजा जाता है। इस ऐप में फ़ाइल सार्वजनिक गैलरी या प्रोजेक्ट स्टोरेज में सेव नहीं की जाती। केवल वही फ़ाइल भेजें जिसे साझा करने का अधिकार आपके पास है। WhatsApp पर फ़ाइल अलग से भेजनी होगी।"
-              : "If you attach a model, it is sent with your enquiry when email delivery is enabled. This application does not save the file to a public gallery or project storage. Send only files you have the right to share. WhatsApp attachments must be sent separately."}
+              ? "अगर आप मॉडल अटैच करते हैं, तो ईमेल सेवा चालू होने पर वह पूछताछ के साथ भेजा जाता है। फ़ाइल आपकी पूछताछ के साथ निजी रूप से रखी जाती है और सिर्फ़ अधिकृत एडमिन को उपलब्ध है, सार्वजनिक गैलरी में नहीं। केवल वही फ़ाइल भेजें जिसे साझा करने का अधिकार आपके पास है। WhatsApp पर फ़ाइल अलग से भेजनी होगी।"
+              : "If you attach a model, it is sent with your enquiry when email delivery is enabled. Files are stored privately with your enquiry and are available only to authorized admins, not in a public gallery. Send only files you have the right to share. WhatsApp attachments must be sent separately."}
           </p>
           <h2 style={{ fontSize: 28 }}>
             {hi ? "कैंपेन जानकारी" : "Campaign information"}

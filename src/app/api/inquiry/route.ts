@@ -1,3 +1,6 @@
+import { trackedPaths } from "@/lib/analytics-paths";
+import { database } from "@/lib/db";
+import { allowRequest } from "@/lib/rate-limit";
 import {
   readInquiryBody,
   InquiryInputError,
@@ -84,9 +87,75 @@ export async function POST(req: NextRequest) {
           }),
         )
       : {};
+  let savedId: string | undefined;
+  let savedDb: Awaited<ReturnType<typeof database>> | undefined;
+  if (process.env.MONGODB_URI) {
+    try {
+      if (!(await allowRequest(req, "inquiry", 20)))
+        return NextResponse.json(
+          { error: "Too many enquiries. Please try again later." },
+          { status: 429 },
+        );
+      savedDb = await database();
+      const record = await savedDb
+        .collection("inquiries")
+        .insertOne({
+          page: trackedPaths.has(clean(body.page, 200))
+            ? clean(body.page, 200)
+            : null,
+          name,
+          email,
+          phone,
+          service,
+          budget,
+          message,
+          projectUrl,
+          campaign,
+          purpose: clean(body.purpose, 30) || "project",
+          createdAt: new Date(),
+          status: "new",
+          emailStatus: "not-configured",
+          ...(attachment
+            ? {
+                attachment: {
+                  filename: attachment.filename,
+                  data: Buffer.from(attachment.content, "base64"),
+                },
+              }
+            : {}),
+        });
+      savedId = record.insertedId.toHexString();
+    } catch {
+      return NextResponse.json(
+        {
+          error:
+            "Unable to save your enquiry. Please try again or use WhatsApp.",
+        },
+        { status: 503 },
+      );
+    }
+  }
+  async function deliveryResult(status: string) {
+    if (savedDb && savedId) {
+      const { ObjectId } = await import("mongodb");
+      await savedDb
+        .collection("inquiries")
+        .updateOne(
+          { _id: new ObjectId(savedId) },
+          { $set: { emailStatus: status } },
+        )
+        .catch(() => {});
+    }
+  }
   const apiKey = process.env.RESEND_API_KEY,
     to = process.env.INQUIRY_TO_EMAIL,
     from = process.env.INQUIRY_FROM_EMAIL;
+  if ((!apiKey || !to || !from) && savedId)
+    return NextResponse.json({
+      ok: true,
+      id: savedId,
+      email: "not-configured",
+    });
   if (!apiKey || !to || !from)
     return NextResponse.json(
       { error: "Email not configured. Use WhatsApp." },
@@ -119,13 +188,20 @@ export async function POST(req: NextRequest) {
       }),
     });
     if (!response.ok) {
+      await deliveryResult("failed");
+      if (savedId)
+        return NextResponse.json({ ok: true, id: savedId, email: "failed" });
       return NextResponse.json(
         { error: "Email delivery failed" },
         { status: 502 },
       );
     }
-    return NextResponse.json({ ok: true });
+    await deliveryResult("sent");
+    return NextResponse.json({ ok: true, ...(savedId ? { id: savedId } : {}) });
   } catch {
+    await deliveryResult("failed");
+    if (savedId)
+      return NextResponse.json({ ok: true, id: savedId, email: "failed" });
     return NextResponse.json(
       { error: "Email service unavailable" },
       { status: 502 },

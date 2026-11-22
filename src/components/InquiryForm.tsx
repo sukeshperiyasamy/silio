@@ -59,7 +59,12 @@ export default function InquiryForm({
     setBusy(true);
     setStatus("");
     try {
-      const payload = { ...form, purpose: intent, campaign: readCampaign() };
+      const payload = {
+        ...form,
+        purpose: intent,
+        page: window.location.pathname,
+        campaign: readCampaign(),
+      };
       const multipart = new FormData();
       if (model && is3d) {
         for (const [key, value] of Object.entries(payload))
@@ -247,8 +252,8 @@ export default function InquiryForm({
             />
             <small id="model-help">
               {lang === "hi"
-                ? "अधिकतम 8 MB। फ़ॉर्म भेजने पर मॉडल ईमेल के साथ भेजा जाएगा, यदि ईमेल सेवा चालू है। WhatsApp पर फ़ाइल अलग से अटैच करें।"
-                : "Up to 8 MB. When email delivery is enabled, the form sends the model as an email attachment. Attach the file manually if using WhatsApp."}
+                ? "अधिकतम 8 MB। फ़ॉर्म भेजने पर मॉडल पूछताछ के साथ निजी रूप से सेव होगा; ईमेल सेवा चालू होने पर अटैचमेंट भी भेजा जाएगा। WhatsApp पर फ़ाइल अलग से अटैच करें।"
+                : "Up to 8 MB. The form saves the model privately with your enquiry. When email delivery is enabled, it is also sent as an attachment. Attach the file manually if using WhatsApp."}
             </small>
             <p
               id="model-error"

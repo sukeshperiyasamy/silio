@@ -584,7 +584,7 @@ export const messages = {
     submitSuccess:
       "Enquiry sent. We will respond using the details you provided.",
     submitFail:
-      "Email submission is not configured yet. Please send your enquiry by WhatsApp.",
+      "Your enquiry could not be received right now. Please try again or contact us on WhatsApp.",
     privacy: "Privacy",
     privacyHeading: "Privacy Policy",
     privacyBody:
@@ -664,7 +664,8 @@ export const messages = {
     send: "पूछताछ भेजें",
     waDirect: "या WhatsApp पर सीधे बात करें",
     submitSuccess: "पूछताछ भेज दी गई है। हम दिए गए संपर्क पर जवाब देंगे।",
-    submitFail: "ईमेल सेवा अभी कॉन्फ़िगर नहीं है। कृपया WhatsApp से संपर्क करें।",
+    submitFail:
+      "अभी आपकी पूछताछ प्राप्त नहीं हो सकी। फिर से कोशिश करें या WhatsApp पर संपर्क करें।",
     privacy: "गोपनीयता नीति",
     privacyHeading: "गोपनीयता नीति",
     privacyBody:

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import PageAnalytics from "@/components/PageAnalytics";
 import CampaignCapture from "@/components/CampaignCapture";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -45,6 +46,7 @@ export default async function LocaleLayout({
   return (
     <>
       <CampaignCapture />
+      <PageAnalytics />
       <Header lang={lang} />
       <main id="main">{children}</main>
       <Footer lang={lang} />
