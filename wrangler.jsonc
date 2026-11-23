@@ -10,11 +10,11 @@
     {
       "binding": "ANALYTICS_DB",
       "database_name": "silio-analytics",
-      "database_id": "00000000-0000-0000-0000-000000000000",
-      "migrations_dir": "migrations",
-    },
+      "database_id": "52e48cb7-653f-4625-8d3d-aa82beeaa9ac",
+      "migrations_dir": "migrations"
+    }
   ],
   "vars": { "MONGODB_DB": "silio" },
   "triggers": { "crons": ["15 2 * * *"] },
-  "observability": { "enabled": false },
+  "observability": { "enabled": false }
 }
