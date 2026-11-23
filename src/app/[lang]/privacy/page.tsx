@@ -47,8 +47,8 @@ export default async function Privacy({
           </p>
           <p>
             {hi
-              ? "हम पेज के नाम, आने के स्रोत, कैंपेन और पेज पर बीते समय के अनुमान को अपने सिस्टम में रिकॉर्ड करते हैं। ब्राउज़र के एक टैब के लिए एक अनाम सत्र पहचान रखी जाती है; पूरे URL के क्वेरी पैरामीटर, विज्ञापन पहचान या विज़िटर का कच्चा IP पता पेज आँकड़ों में नहीं रखा जाता। Do Not Track का सम्मान किया जाता है। पेज आँकड़े लगभग 90 दिन रखे जाते हैं।"
-              : "We record page paths, traffic sources, campaigns and approximate elapsed time in our own analytics system. An anonymous session identifier lasts for a browser-tab session. Full URL queries, advertising identifiers and raw visitor IP addresses are not stored in page analytics. We honor Do Not Track. Page analytics are retained for approximately 90 days."}
+              ? "हम पेज के नाम, आने के स्रोत, कैंपेन और पेज पर बीते समय के अनुमान को अपने सिस्टम में रिकॉर्ड करते हैं। Cloudflare पर ये आँकड़े D1 में और पूछताछ MongoDB में रखी जाती है। ब्राउज़र के एक टैब के लिए एक अनाम सत्र पहचान रखी जाती है; पूरे URL के क्वेरी पैरामीटर, विज्ञापन पहचान या विज़िटर का कच्चा IP पता पेज आँकड़ों में नहीं रखा जाता। Do Not Track का सम्मान किया जाता है। पेज आँकड़े लगभग 90 दिन रखे जाते हैं।"
+              : "We record page paths, traffic sources, campaigns and approximate elapsed time in our own analytics system. On Cloudflare, these analytics are stored in D1 while enquiries remain in MongoDB. An anonymous session identifier lasts for a browser-tab session. Full URL queries, advertising identifiers and raw visitor IP addresses are not stored in page analytics. We honor Do Not Track. Page analytics are retained for approximately 90 days."}
           </p>
           <h2 style={{ fontSize: 28 }}>
             {hi ? "3D मॉडल फ़ाइलें" : "3D model files"}

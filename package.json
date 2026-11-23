@@ -8,9 +8,20 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
-    "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.mjs"
+    "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.mjs",
+    "build:worker": "node scripts/build-worker.mjs",
+    "preview:worker": "opennextjs-cloudflare preview",
+    "deploy:check": "node --env-file-if-exists=.env.local scripts/check-deploy.mjs",
+    "deploy:worker": "npm run deploy:check && opennextjs-cloudflare deploy",
+    "deploy": "npm run deploy:check && npm run build:worker && opennextjs-cloudflare deploy",
+    "d1:migrate:local": "wrangler d1 migrations apply silio-analytics --local",
+    "d1:migrate:remote": "wrangler d1 migrations apply silio-analytics --remote",
+    "worker:preview-env": "node scripts/setup-worker-secrets.mjs --preview",
+    "worker:secrets": "node scripts/setup-worker-secrets.mjs",
+    "test:worker": "node --env-file=.env.local scripts/verify-worker.mjs"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.18",
     "mongodb": "^7.9.1",
     "next": "^15.5.0",
     "react": "^19.1.0",
@@ -21,12 +32,15 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "tsx": "^4.23.15",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "wrangler": "^4.166.0"
   },
   "overrides": {
-    "postcss": "^8.5.23"
+    "postcss": "^8.5.23",
+    "glob": "^14.0.2",
+    "minimatch": "^11.0.1"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.13"
   }
 }

@@ -1,3 +1,4 @@
+import { analyticsReport } from "@/lib/analytics-report";
 import InquiryList from "@/components/InquiryList";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -53,84 +54,23 @@ export default async function Admin({
     Math.min(10000, Number.parseInt(query.page || "0") || 0),
   );
   const since = new Date(Date.now() - days * 86400000);
-  const match = { createdAt: { $gte: since }, ...(path ? { path } : {}) };
   try {
     const db = await database();
-    const [pages, sources, daily, leads, leadCount, views, sessions] =
-      await Promise.all([
-        db
-          .collection("page_views")
-          .aggregate<{
-            path: string;
-            views: number;
-            sessions: number;
-            average: number;
-          }>([
-            { $match: match },
-            {
-              $group: {
-                _id: "$path",
-                views: { $sum: 1 },
-                sessions: { $addToSet: "$session" },
-                average: { $avg: "$duration" },
-              },
-            },
-            {
-              $project: {
-                _id: 0,
-                path: "$_id",
-                views: 1,
-                sessions: { $size: "$sessions" },
-                average: 1,
-              },
-            },
-            { $sort: { views: -1 } },
-          ])
-          .toArray(),
-        db
-          .collection("page_views")
-          .aggregate([
-            { $match: match },
-            { $group: { _id: "$source", views: { $sum: 1 } } },
-            { $sort: { views: -1 } },
-            { $limit: 15 },
-          ])
-          .toArray(),
-        db
-          .collection("page_views")
-          .aggregate([
-            { $match: match },
-            {
-              $group: {
-                _id: {
-                  $dateToString: {
-                    format: "%Y-%m-%d",
-                    date: "$createdAt",
-                    timezone: "Asia/Kolkata",
-                  },
-                },
-                views: { $sum: 1 },
-              },
-            },
-            { $sort: { _id: 1 } },
-          ])
-          .toArray(),
-        db
-          .collection("inquiries")
-          .find(
-            { createdAt: { $gte: since } },
-            { projection: { "attachment.data": 0 } },
-          )
-          .sort({ createdAt: -1 })
-          .skip(page * 25)
-          .limit(25)
-          .toArray(),
-        db
-          .collection("inquiries")
-          .countDocuments({ createdAt: { $gte: since } }),
-        db.collection("page_views").countDocuments(match),
-        db.collection("page_views").distinct("session", match),
-      ]);
+    const [report, leads, leadCount] = await Promise.all([
+      analyticsReport(since, path),
+      db
+        .collection("inquiries")
+        .find(
+          { createdAt: { $gte: since } },
+          { projection: { "attachment.data": 0 } },
+        )
+        .sort({ createdAt: -1 })
+        .skip(page * 25)
+        .limit(25)
+        .toArray(),
+      db.collection("inquiries").countDocuments({ createdAt: { $gte: since } }),
+    ]);
+    const { pages, sources, daily, views, sessions } = report;
     const url = (next: number) =>
       `/admin?days=${days}&path=${encodeURIComponent(path)}&page=${next}`;
     return (
@@ -188,7 +128,7 @@ export default async function Admin({
           </article>
           <article>
             <small>Anonymous sessions</small>
-            <strong>{sessions.length}</strong>
+            <strong>{sessions}</strong>
           </article>
           <article>
             <small>Enquiries · all pages</small>
@@ -196,10 +136,11 @@ export default async function Admin({
           </article>
         </div>
         <p className="muted">
-          Sessions are browser-tab sessions, not identified people. Time on page
-          is elapsed time reported when leaving or hiding a page; zero means no
-          timing update was received. Analytics filters apply to the page
-          reports; enquiries show the selected date range across all pages.
+          Analytics storage: {report.storage}. Sessions are browser-tab
+          sessions, not identified people. Time on page is elapsed time reported
+          when leaving or hiding a page; zero means no timing update was
+          received. Analytics filters apply to the page reports; enquiries show
+          the selected date range across all pages.
         </p>
         <section className="admin-section">
           <h2>Page performance</h2>
