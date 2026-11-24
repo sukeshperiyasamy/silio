@@ -15,3 +15,5 @@
 - Keep public copy and SEO metadata location-neutral. Do not target only Jodhpur or Rajasthan. Preserve existing marketing URLs while removing geographic restrictions from visible text and structured data.
 
 - Use SVG icons for branding and interface decoration. Do not use emoji characters on the site; icons must render consistently on mobile and desktop.
+
+- Keep the short company introduction and contact form together on the Connect page (`/en/contact` and `/hi/contact`). Navigation uses Connect / जुड़ें; legacy About URLs redirect permanently to the matching contact page.

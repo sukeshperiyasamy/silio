@@ -34,7 +34,7 @@ export default function Footer({ lang }: { lang: Lang }) {
                   {lang === "hi" ? "खर्च का अनुमान" : "Project estimator"}
                 </Link>
                 <Link href={`/${lang}/pricing`}>{t.navPricing}</Link>
-                <Link href={`/${lang}/contact`}>{t.navContact}</Link>
+                <Link href={`/${lang}/contact`}>{t.navConnect}</Link>
                 <Link href={`/${lang}/demos`}>
                   {lang === "hi" ? "डेमो" : "Demos"}
                 </Link>
@@ -45,7 +45,7 @@ export default function Footer({ lang }: { lang: Lang }) {
               </nav>
             </div>
             <div>
-              <strong>{t.navContact}</strong>
+              <strong>{t.navConnect}</strong>
               <a href={`tel:+91${site.phone}`}>+91 {site.phone}</a>
               <a
                 href={waLink("Hello Silio, I have a project enquiry.")}

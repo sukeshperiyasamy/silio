@@ -14,8 +14,7 @@ export default function Header({ lang }: { lang: Lang }) {
     ["/services", t.navServices],
     ["/portfolio", lang === "hi" ? "पोर्टफ़ोलियो" : "Portfolio"],
     ["/pricing", t.navPricing],
-    ["/about", t.navAbout],
-    ["/contact", t.navContact],
+    ["/contact", t.navConnect],
   ];
   return (
     <header className="nav">

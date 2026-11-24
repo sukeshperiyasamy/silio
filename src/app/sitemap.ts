@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/demos",
       "/estimate",
       "/review",
-      "/about",
       "/portfolio",
       "/services/3d-design-printing",
       ...servicePages.map((p) => `/services/${p.slug}`),
