@@ -1,3 +1,4 @@
+import { organizationSchema } from "@/lib/seo";
 import Icon from "@/components/Icon";
 import Link from "next/link";
 import PrintVisual from "@/components/PrintVisual";
@@ -21,12 +22,19 @@ export default async function Home({
   const t = messages[lang];
   const jsonld = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Silio",
-    url: site.url,
-    telephone: `+91${site.phone}`,
-    description: t.heroDesc,
+    "@graph": [
+      organizationSchema(),
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        name: "Silio",
+        url: site.url,
+        publisher: { "@id": `${site.url}/#organization` },
+        inLanguage: ["en", "hi"],
+      },
+    ],
   };
+
   return (
     <>
       <script

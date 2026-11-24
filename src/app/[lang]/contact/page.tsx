@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 export async function generateMetadata({
   params,
@@ -5,7 +6,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/contact", {
     title:
       lang === "hi"
         ? "Silio से जुड़ें | परिचय और संपर्क"
@@ -14,11 +15,7 @@ export async function generateMetadata({
       lang === "hi"
         ? "Silio के काम करने का तरीका जानें और अपने प्रोजेक्ट पर बातचीत शुरू करें। ऑनलाइन पूछताछ, फ़ोन और WhatsApp से जुड़ें।"
         : "Meet Silio, learn how we work and start a conversation about your project. Connect through our enquiry form, phone or WhatsApp.",
-    alternates: {
-      canonical: `/${lang}/contact`,
-      languages: { en: "/en/contact", hi: "/hi/contact" },
-    },
-  };
+  });
 }
 import { notFound } from "next/navigation";
 import InquiryForm from "@/components/InquiryForm";

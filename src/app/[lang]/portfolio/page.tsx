@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import Icon from "@/components/Icon";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -10,7 +11,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/portfolio", {
     title:
       lang === "hi"
         ? "SILIO | डेमो पोर्टफ़ोलियो"
@@ -19,11 +20,7 @@ export async function generateMetadata({
       lang === "hi"
         ? "काल्पनिक बिज़नेस डेमो और 3D कॉन्सेप्ट देखें; ये ग्राहक प्रोजेक्ट नहीं हैं।"
         : "Explore fictional business demos and an illustrative 3D enclosure concept. These examples are not client projects.",
-    alternates: {
-      canonical: `/${lang}/portfolio`,
-      languages: { en: "/en/portfolio", hi: "/hi/portfolio" },
-    },
-  };
+  });
 }
 export default async function Portfolio({
   params,

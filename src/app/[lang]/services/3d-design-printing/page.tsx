@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -22,23 +23,10 @@ export async function generateMetadata({
       lang === "hi"
         ? "CAD मॉडलिंग, STL रिपेयर, इलेक्ट्रॉनिक्स एनक्लोज़र और PLA प्रिंटिंग। स्कोप की समीक्षा और अलग-अलग खर्च के साथ कोटेशन माँगें।"
         : "CAD modeling, STL repair, electronics enclosures and PLA printing. Request a reviewed quote with design, print, finishing and delivery costs separated.";
-  return {
+  return pageMetadata(lang, "/services/3d-design-printing", {
     title,
     description,
-    alternates: {
-      canonical: `/${lang}/services/3d-design-printing`,
-      languages: {
-        en: "/en/services/3d-design-printing",
-        hi: "/hi/services/3d-design-printing",
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${site.url}/${lang}/services/3d-design-printing`,
-      type: "website",
-    },
-  };
+  });
 }
 export default async function PrintingPage({
   params,

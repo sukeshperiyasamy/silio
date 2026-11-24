@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import ServiceExplorer from "@/components/ServiceExplorer";
 import ServicePrice from "@/components/ServicePrice";
 import { servicePath } from "@/lib/service-pages";
@@ -10,16 +11,12 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/services", {
     title:
       lang === "hi"
         ? "Silio सेवाएँ | वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप"
         : "Silio Services | Websites, Web Applications & Mobile Apps",
-    alternates: {
-      canonical: `/${lang}/services`,
-      languages: { en: "/en/services", hi: "/hi/services" },
-    },
-  };
+  });
 }
 import { notFound } from "next/navigation";
 import { langValid, messages, prices } from "@/lib/site";

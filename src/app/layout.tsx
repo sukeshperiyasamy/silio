@@ -7,6 +7,10 @@ export const metadata = {
   description:
     "Website, web application and mobile app development. UI/UX, 3D design and printing, and data services are available as additional services.",
   icons: { icon: "/favicon.svg" },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
+  robots: { index: true, follow: true },
 };
 export default async function RootLayout({
   children,

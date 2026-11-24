@@ -1,3 +1,4 @@
+import { pageMetadata, serviceSeoTitle } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,26 +17,20 @@ export async function generateMetadata({
   const { lang, service } = await params;
   const page = servicePages.find((p) => p.slug === service);
   if (!page || !langValid(lang)) return {};
-  const title = `SILIO | ${lang === "hi" ? page.hi : page.en}`,
-    description = lang === "hi" ? page.audienceHi : page.audienceEn;
-  return {
+  const item = prices.find((p) => p.id === page.id)!;
+  const title = serviceSeoTitle(
+      page.id,
+      lang,
+      lang === "hi" ? page.hi : page.en,
+    ),
+    description =
+      lang === "hi"
+        ? `${page.audienceHi} ${item.detailHi}`
+        : `${page.audienceEn} ${item.detailEn}`;
+  return pageMetadata(lang, `/services/${service}`, {
     title,
     description,
-    alternates: {
-      canonical: `/${lang}/services/${service}`,
-      languages: {
-        en: `/en/services/${service}`,
-        hi: `/hi/services/${service}`,
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${site.url}/${lang}/services/${service}`,
-      type: "website",
-      locale: lang === "hi" ? "hi_IN" : "en_IN",
-    },
-  };
+  });
 }
 export default async function ServicePage({
   params,
@@ -63,7 +58,12 @@ export default async function ServicePage({
         name: title,
         description: hi ? page.audienceHi : page.audienceEn,
         url,
-        provider: { "@type": "Organization", name: "SILIO", url: site.url },
+        provider: {
+          "@type": "Organization",
+          "@id": `${site.url}/#organization`,
+          name: "Silio",
+          url: site.url,
+        },
       },
       {
         "@type": "BreadcrumbList",

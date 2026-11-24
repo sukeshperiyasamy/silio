@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { langValid } from "@/lib/site";
@@ -8,7 +9,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/demos", {
     title:
       lang === "hi"
         ? "Silio | इंटरैक्टिव बिज़नेस डेमो"
@@ -17,11 +18,7 @@ export async function generateMetadata({
       lang === "hi"
         ? "प्रोजेक्ट शुरू करने से पहले काल्पनिक कैटलॉग, रेस्टोरेंट मेन्यू, Excel क्लीनअप और वेबसाइट आज़माएँ।"
         : "Try fictional catalogues, restaurant menus, Excel cleanup and business websites before starting your project.",
-    alternates: {
-      canonical: `/${lang}/demos`,
-      languages: { en: "/en/demos", hi: "/hi/demos" },
-    },
-  };
+  });
 }
 export default async function Page({
   params,

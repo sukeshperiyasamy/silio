@@ -19,3 +19,5 @@
 - Keep the short company introduction and contact form together on the Connect page (`/en/contact` and `/hi/contact`). Navigation uses Connect / जुड़ें; legacy About URLs redirect permanently to the matching contact page.
 
 - Estimator leads must save contact details and a server-calculated estimate snapshot before showing success. Keep WhatsApp optional, record explicit permission for estimate follow-up, and never collect contact details merely from browsing or adjusting estimates.
+
+- Keep public SEO metadata in `src/lib/seo.ts` consistent with each page, using bilingual canonical/alternate links and sharing images. Never invent addresses, client proof, reviews or ranking guarantees. Search Console ownership verification needs the owner-provided public token; deploying metadata does not verify or index the site automatically.

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { langValid } from "@/lib/site";
@@ -8,20 +9,16 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/review", {
     title:
       lang === "hi"
-        ? "Silio | आपकी वेबसाइट पर एक नई नज़र।"
-        : "Silio | A fresh pair of eyes on your website.",
+        ? "मुफ़्त वेबसाइट समीक्षा | Silio"
+        : "Free Website Review for Small Businesses | Silio",
     description:
       lang === "hi"
         ? "तीन सार्वजनिक पेज तक मोबाइल अनुभव, स्पष्टता और संपर्क के तरीकों पर मुफ़्त मानवीय समीक्षा माँगें। खरीदारी ज़रूरी नहीं।"
         : "Request a free human review of up to three public pages: mobile usability, clarity and ways for customers to contact you. No purchase required.",
-    alternates: {
-      canonical: `/${lang}/review`,
-      languages: { en: "/en/review", hi: "/hi/review" },
-    },
-  };
+  });
 }
 export default async function Page({
   params,

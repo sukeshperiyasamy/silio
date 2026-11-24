@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { langValid } from "@/lib/site";
@@ -8,20 +9,16 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/estimate", {
     title:
       lang === "hi"
-        ? "Silio | आपके बजट के लिए एक शुरुआती अनुमान।"
-        : "Silio | A useful starting point for your budget.",
+        ? "वेबसाइट और ऐप खर्च का अनुमान | Silio"
+        : "Website & App Cost Estimator | Silio",
     description:
       lang === "hi"
         ? "ज़रूरी पैकेज चुनें। एक बार के प्रोजेक्ट और मासिक केयर का खर्च अलग देखें।"
         : "Choose the packages you need. Keep one-time work and monthly care clearly separate.",
-    alternates: {
-      canonical: `/${lang}/estimate`,
-      languages: { en: "/en/estimate", hi: "/hi/estimate" },
-    },
-  };
+  });
 }
 export default async function Page({
   params,

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { langValid, messages, site } from "@/lib/site";
@@ -7,13 +8,9 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/privacy", {
     title: lang === "hi" ? "Silio | गोपनीयता नीति" : "Silio | Privacy",
-    alternates: {
-      canonical: `/${lang}/privacy`,
-      languages: { en: "/en/privacy", hi: "/hi/privacy" },
-    },
-  };
+  });
 }
 export default async function Privacy({
   params,

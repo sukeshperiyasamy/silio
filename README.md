@@ -115,3 +115,8 @@ Both the project and print estimators offer an inline contact step. A customer e
 `/api/inquiry` validates estimate selections and recalculates all costs from the catalogue. The stored snapshot separates one-time costs, monthly care, printing minimums, per-gram charges and design fees. Only successful MongoDB persistence produces a saved state. Request IDs and the `estimate_request_unique` sparse unique index make retries idempotent; apply indexes with `npm run db:setup` before deploying this change. Identical retries return the existing record without repeating email delivery. All standard enquiry protections remain active.
 
 In `/admin/enquiries`, estimate leads show selected services, scope, totals and the contact permission. Phone/email links and an explicit WhatsApp follow-up link let the team respond manually. CSV exports include estimate amounts, items and permission timestamps. No automatic WhatsApp message is sent. Enquiry retention and backups follow the same policy as other leads.
+
+
+## Search visibility
+
+Public metadata is centralized in `src/lib/seo.ts`, including canonical/language links, page-specific social metadata and bilingual branded sharing cards. See [docs/seo-and-client-plan.md](docs/seo-and-client-plan.md) for Search Console verification, sitemap submission and a practical client-enquiry plan. `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` is optional and public; ownership verification, indexing and rankings are not performed or guaranteed by deploying this code.

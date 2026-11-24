@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 export async function generateMetadata({
   params,
@@ -5,16 +6,12 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
+  return pageMetadata(lang, "/pricing", {
     title:
       lang === "hi"
         ? "Silio कीमतें | किफ़ायती डिजिटल सेवाएँ"
         : "Silio Pricing | Affordable Freelance Digital Services",
-    alternates: {
-      canonical: `/${lang}/pricing`,
-      languages: { en: "/en/pricing", hi: "/hi/pricing" },
-    },
-  };
+  });
 }
 import { notFound } from "next/navigation";
 import PackageComparison from "@/components/PackageComparison";
