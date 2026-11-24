@@ -2694,3 +2694,24 @@ main {
     width: 100%;
   }
 }
+
+.contact-email-address {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.contact-email small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+.contact-email-block {
+  margin-bottom: 20px;
+}
+.footer .contact-email {
+  margin: 10px 0;
+  color: #d6e1d6;
+  font-size: 14px;
+}
+.footer .contact-email small {
+  color: #bbcbbf;
+}

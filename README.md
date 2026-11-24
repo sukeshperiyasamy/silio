@@ -120,3 +120,6 @@ In `/admin/enquiries`, estimate leads show selected services, scope, totals and 
 ## Search visibility
 
 Public metadata is centralized in `src/lib/seo.ts`, including canonical/language links, page-specific social metadata and bilingual branded sharing cards. See [docs/seo-and-client-plan.md](docs/seo-and-client-plan.md) for Search Console verification, sitemap submission and a practical client-enquiry plan. `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` is optional and public; ownership verification, indexing and rankings are not performed or guaranteed by deploying this code.
+
+
+Public contact email is configured once as `site.email` in `src/lib/site.ts`. The reserved `hello@silio.example` address is an explicitly inactive placeholder displayed in the footer and Connect page in both languages. Replace it with the real company address to activate email links automatically. Email delivery settings for form notifications are configured separately.

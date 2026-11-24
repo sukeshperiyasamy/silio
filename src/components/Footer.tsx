@@ -1,3 +1,4 @@
+import ContactEmail from "./ContactEmail";
 import Icon from "@/components/Icon";
 import Link from "next/link";
 import { site, messages, type Lang, waLink } from "@/lib/site";
@@ -46,6 +47,7 @@ export default function Footer({ lang }: { lang: Lang }) {
             <div>
               <strong>{t.navConnect}</strong>
               <a href={`tel:+91${site.phone}`}>+91 {site.phone}</a>
+              <ContactEmail lang={lang} />
               <a
                 href={waLink("Hello Silio, I have a project enquiry.")}
                 target="_blank"

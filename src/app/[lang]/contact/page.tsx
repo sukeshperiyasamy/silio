@@ -1,3 +1,4 @@
+import ContactEmail from "@/components/ContactEmail";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 export async function generateMetadata({
@@ -85,6 +86,10 @@ export default async function Contact({
               <br />
               <a href={`tel:+91${site.phone}`}>+91 {site.phone}</a>
             </p>
+            <div className="contact-email-block">
+              <strong>{lang === "hi" ? "ईमेल" : "Email"}</strong>
+              <ContactEmail lang={lang} />
+            </div>
             <p>
               <strong>{lang === "hi" ? "सहयोग" : "Collaboration"}</strong>
               <br />

@@ -2,6 +2,7 @@ export const site = {
   brand: "Silio",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   phone: "9943969595",
+  email: "hello@silio.example",
   whatsapp: "919943969595",
   location: "Online & remote collaboration",
 };

@@ -81,6 +81,7 @@ export function organizationSchema() {
       "@type": "ContactPoint",
       telephone: `+91${site.phone}`,
       contactType: "sales",
+      ...(!site.email.endsWith(".example") ? { email: site.email } : {}),
       availableLanguage: ["English", "Hindi"],
     },
   };
