@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import Link from "next/link";
 import type { Lang } from "@/lib/site";
 
@@ -83,7 +84,7 @@ export default function GrowthSections({ lang }: { lang: Lang }) {
             {[
               [
                 "catalogue",
-                "▤",
+                "catalogue",
                 hi ? "प्रोडक्ट कैटलॉग" : "Product catalogue",
                 hi
                   ? "खोजें, फ़िल्टर करें और पूछताछ देखें।"
@@ -91,7 +92,7 @@ export default function GrowthSections({ lang }: { lang: Lang }) {
               ],
               [
                 "menu",
-                "◒",
+                "menu",
                 hi ? "डिजिटल मेन्यू" : "Digital menu",
                 hi
                   ? "फ़ोन पर एक सरल मेन्यू आज़माएँ।"
@@ -99,7 +100,7 @@ export default function GrowthSections({ lang }: { lang: Lang }) {
               ],
               [
                 "excel",
-                "▥",
+                "chart",
                 hi ? "Excel क्लीनअप" : "Excel cleanup",
                 hi
                   ? "बिखरे रिकॉर्ड को व्यवस्थित करें।"
@@ -112,7 +113,7 @@ export default function GrowthSections({ lang }: { lang: Lang }) {
                 href={`/${lang}/demos#${id}`}
               >
                 <span className="teaser-icon" aria-hidden="true">
-                  {icon}
+                  <Icon name={icon} />
                 </span>
                 <h3>{title}</h3>
                 <p>{body}</p>

@@ -1,4 +1,6 @@
 "use client";
+import Icon from "@/components/Icon";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { messages, type Lang } from "@/lib/site";
@@ -19,7 +21,8 @@ export default function Header({ lang }: { lang: Lang }) {
     <header className="nav">
       <div className="container navinner">
         <Link href={`/${lang}`} className="brand">
-          silio<span>✳</span>
+          silio
+          <Icon name="spark" className="brand-mark" />
         </Link>
         <nav className="navlinks" aria-label="Main navigation">
           {links.map(([p, n]) => (

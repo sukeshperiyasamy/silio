@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import Link from "next/link";
 import PrintVisual from "@/components/PrintVisual";
 import GrowthSections from "@/components/GrowthSections";
@@ -6,9 +7,9 @@ import { site, messages, langValid, waLink } from "@/lib/site";
 import PriceCards from "@/components/PriceCards";
 import { notFound } from "next/navigation";
 const services = [
-  ["⌘", "service1", "desc1", "web"],
-  ["▤", "service2", "desc2", "webapps"],
-  ["▯", "service3", "desc3", "mobile"],
+  ["website", "service1", "desc1", "web"],
+  ["catalogue", "service2", "desc2", "webapps"],
+  ["mobile", "service3", "desc3", "mobile"],
 ] as const;
 export default async function Home({
   params,
@@ -71,7 +72,9 @@ export default async function Home({
           <div className="cards core-service-cards">
             {services.map(([icon, title, desc, category]) => (
               <article className="card" key={title}>
-                <div className="circle">{icon}</div>
+                <div className="circle">
+                  <Icon name={icon} />
+                </div>
                 <h3>{t[title]}</h3>
                 <p>{t[desc]}</p>
                 <Link
@@ -93,7 +96,9 @@ export default async function Home({
               <br />
               <em>more possibility.</em>
             </span>
-            <span className="art-star">✳</span>
+            <span className="art-star">
+              <Icon name="spark" />
+            </span>
             <div className="art-bottom">
               <span>THE SILIO APPROACH</span>
               <span>IDEA / BUILD / GROW</span>

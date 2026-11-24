@@ -1,4 +1,6 @@
 "use client";
+import Icon from "@/components/Icon";
+
 import Link from "next/link";
 import { useState } from "react";
 import { type Lang } from "@/lib/site";
@@ -10,42 +12,42 @@ const products = [
     hi: "ओक साइड टेबल",
     category: "furniture",
     price: 2400,
-    symbol: "▤",
+    symbol: "table",
   },
   {
     en: "Woven lounge chair",
     hi: "बुनी हुई लाउंज चेयर",
     category: "furniture",
     price: 4800,
-    symbol: "◫",
+    symbol: "chair",
   },
   {
     en: "Handcrafted cabinet",
     hi: "हस्तनिर्मित कैबिनेट",
     category: "furniture",
     price: 8900,
-    symbol: "▥",
+    symbol: "cabinet",
   },
   {
     en: "Brass desk lamp",
     hi: "पीतल का डेस्क लैंप",
     category: "decor",
     price: 1600,
-    symbol: "◉",
+    symbol: "lamp",
   },
   {
     en: "Ceramic planter",
     hi: "सिरेमिक प्लांटर",
     category: "decor",
     price: 650,
-    symbol: "◒",
+    symbol: "planter",
   },
   {
     en: "Block-print cushion",
     hi: "ब्लॉक प्रिंट कुशन",
     category: "decor",
     price: 450,
-    symbol: "▧",
+    symbol: "cushion",
   },
 ];
 const menu = [
@@ -169,7 +171,7 @@ export default function BusinessDemos({ lang }: { lang: Lang }) {
                 .map((p) => (
                   <article key={p.en} className="demo-product">
                     <div className="product-symbol" aria-hidden="true">
-                      {p.symbol}
+                      <Icon name={p.symbol} />
                     </div>
                     <h3>{hi ? p.hi : p.en}</h3>
                     <p>{money(p.price)}</p>

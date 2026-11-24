@@ -13,3 +13,5 @@
 - Primary services are website development, web application development and mobile app development. UI/UX design, 3D design/printing and other specialist services are secondary. Keep navigation, featured offers and marketing copy consistent with this priority.
 
 - Keep public copy and SEO metadata location-neutral. Do not target only Jodhpur or Rajasthan. Preserve existing marketing URLs while removing geographic restrictions from visible text and structured data.
+
+- Use SVG icons for branding and interface decoration. Do not use emoji characters on the site; icons must render consistently on mobile and desktop.

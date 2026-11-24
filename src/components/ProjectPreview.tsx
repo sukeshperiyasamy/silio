@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import type { Lang } from "@/lib/site";
 
 export default function ProjectPreview({ lang }: { lang: Lang }) {
@@ -16,12 +17,13 @@ export default function ProjectPreview({ lang }: { lang: Lang }) {
         <div className="browser-bar">
           <span className="window-dots">● ● ●</span>
           <span>silio / digital studio</span>
-          <span>✧</span>
+          <Icon name="diamond" />
         </div>
         <div className="preview-body">
           <div className="preview-nav">
             <b>
-              silio<span>✳</span>
+              silio
+              <Icon name="spark" className="brand-mark" />
             </b>
             <span>Ideas. Made real.</span>
           </div>
@@ -36,7 +38,9 @@ export default function ProjectPreview({ lang }: { lang: Lang }) {
           <div className="preview-shapes">
             <div className="shape-ring" />
             <div className="shape-block" />
-            <span>✳</span>
+            <span>
+              <Icon name="spark" />
+            </span>
           </div>
           <div className="preview-foot">
             <span>DESIGN WITH PURPOSE</span>
@@ -46,7 +50,9 @@ export default function ProjectPreview({ lang }: { lang: Lang }) {
       </div>
       <div className="data-preview">
         <div className="data-title">
-          <span className="data-icon">▥</span>
+          <span className="data-icon">
+            <Icon name="chart" />
+          </span>
           <div>
             <b>{hi ? "डेटा, अब सरल।" : "Your data, simplified."}</b>
             <small>{hi ? "डैशबोर्ड का उदाहरण" : "Illustrative dashboard"}</small>
@@ -59,11 +65,13 @@ export default function ProjectPreview({ lang }: { lang: Lang }) {
         </div>
         <div className="data-foot">
           <span>Clarity in every cell.</span>
-          <span>✧</span>
+          <Icon name="diamond" />
         </div>
       </div>
       <div className="build-note">
-        <span>✳</span>
+        <span>
+          <Icon name="spark" />
+        </span>
         {hi
           ? "आपके लिए, सोच-समझकर बनाया गया।"
           : "Thoughtfully built. Just for you."}

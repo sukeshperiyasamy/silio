@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -35,7 +36,7 @@ export default async function Portfolio({
   const demos = [
     [
       "website",
-      "⌘",
+      "website",
       hi ? "बिज़नेस वेबसाइट" : "Business website",
       hi
         ? "एक काल्पनिक इंटीरियर स्टूडियो का परिचय और सेवा पेज।"
@@ -43,7 +44,7 @@ export default async function Portfolio({
     ],
     [
       "catalogue",
-      "▤",
+      "catalogue",
       hi ? "प्रोडक्ट कैटलॉग" : "Product catalogue",
       hi
         ? "फ़र्नीचर और सजावट के सैंपल में खोज और पूछताछ आज़माएँ।"
@@ -51,7 +52,7 @@ export default async function Portfolio({
     ],
     [
       "excel",
-      "▥",
+      "chart",
       hi ? "Excel क्लीनअप" : "Excel cleanup",
       hi
         ? "सैंपल रिकॉर्ड में डुप्लिकेट हटाएँ और नाम व्यवस्थित करें।"
@@ -59,7 +60,7 @@ export default async function Portfolio({
     ],
     [
       "menu",
-      "◒",
+      "menu",
       hi ? "डिजिटल कैफ़े मेन्यू" : "Digital café menu",
       hi
         ? "फ़ोन-अनुकूल मेन्यू में खाने और पेय की श्रेणी चुनें।"
@@ -67,7 +68,7 @@ export default async function Portfolio({
     ],
     [
       "care",
-      "✳",
+      "care",
       hi ? "वेबसाइट केयर" : "Website care",
       hi
         ? "प्रगति के साथ एक उदाहरण मेंटेनेंस चेकलिस्ट आज़माएँ।"
@@ -104,7 +105,7 @@ export default async function Portfolio({
                   {hi ? "इंटरैक्टिव डेमो" : "INTERACTIVE DEMO"}
                 </span>
                 <span className="teaser-icon" aria-hidden="true">
-                  {icon}
+                  <Icon name={icon} />
                 </span>
                 <h2>{title}</h2>
                 <p>{body}</p>

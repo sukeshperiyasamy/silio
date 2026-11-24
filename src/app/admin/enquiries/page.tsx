@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -37,7 +38,8 @@ export default async function Enquiries({
         <header className="admin-heading">
           <div>
             <Link className="brand" href="/en">
-              silio✳
+              silio
+              <Icon name="spark" className="brand-mark" />
             </Link>
             <h1>Forms & Enquiries</h1>
             <p>

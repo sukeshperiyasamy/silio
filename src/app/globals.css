@@ -99,7 +99,12 @@ select:focus-visible {
   letter-spacing: -0.07em;
   line-height: 1;
 }
-.brand span {
+.brand-mark {
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.08em;
+  vertical-align: -0.06em;
+  flex-shrink: 0;
   color: #619c35;
 }
 .navlinks {
@@ -230,7 +235,13 @@ select:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .trust span:before {
-  content: "✳";
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  -webkit-mask: url("/icons/spark.svg") center / contain no-repeat;
+  mask: url("/icons/spark.svg") center / contain no-repeat;
   color: #5d8a37;
   font-size: 20px;
   margin-right: 12px;
@@ -592,7 +603,13 @@ button:disabled {
   font-size: 15px;
 }
 .principles li:before {
-  content: "✓";
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 11px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
   color: #507d32;
   margin-right: 12px;
 }
@@ -651,7 +668,7 @@ button:disabled {
   font-size: 22px;
   letter-spacing: -0.06em;
 }
-.preview-nav b span {
+.preview-nav b .brand-mark {
   color: #5f8438;
   margin-left: 4px;
 }
@@ -2539,4 +2556,19 @@ main {
   .admin-archive-filters {
     grid-template-columns: 1fr;
   }
+}
+
+/* SVGs follow the surrounding icon size without font-dependent glyphs. */
+.art-star svg,
+.preview-shapes > span svg,
+.build-note > span svg {
+  display: block;
+}
+.data-icon {
+  display: grid;
+  place-items: center;
+}
+.circle svg,
+.teaser-icon svg {
+  display: block;
 }

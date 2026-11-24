@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import Link from "next/link";
 import { site, messages, type Lang, waLink } from "@/lib/site";
 export default function Footer({ lang }: { lang: Lang }) {
@@ -9,7 +10,8 @@ export default function Footer({ lang }: { lang: Lang }) {
           <div className="footer-grid">
             <div>
               <Link className="brand" href={`/${lang}`}>
-                silio<span>✳</span>
+                silio
+                <Icon name="spark" className="brand-mark" />
               </Link>
               <p>{t.footer}</p>
               <small>

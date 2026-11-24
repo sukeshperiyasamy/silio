@@ -1,3 +1,4 @@
+import Icon from "@/components/Icon";
 import { analyticsReport } from "@/lib/analytics-report";
 import InquiryList from "@/components/InquiryList";
 import type { Metadata } from "next";
@@ -20,7 +21,8 @@ export default async function Admin({
     return (
       <main id="main" className="container admin-login">
         <Link className="brand" href="/en">
-          silio✳
+          silio
+          <Icon name="spark" className="brand-mark" />
         </Link>
         <h1>Private dashboard</h1>
         <p>Sign in to review page analytics and customer enquiries.</p>
@@ -78,7 +80,8 @@ export default async function Admin({
         <header className="admin-heading">
           <div>
             <Link className="brand" href="/en">
-              silio✳
+              silio
+              <Icon name="spark" className="brand-mark" />
             </Link>
             <h1>Your site, page by page.</h1>
             <p>Private analytics and enquiries · dates in India time</p>
