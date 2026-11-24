@@ -153,7 +153,7 @@ export default async function Home({
             {t.disclaimer}
           </p>
           <div className="button-row">
-            <Link href={`/${lang}/pricing`} className="pill">
+            <Link href={`/${lang}/services`} className="pill">
               {t.viewAll}
             </Link>
           </div>

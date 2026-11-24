@@ -20,11 +20,11 @@ test("service SEO keeps canonical, sharing URL and language alternatives on the 
     JSON.stringify(data.openGraph?.images).includes("social-card-hi.png"),
   );
 });
-test("directory and pricing get distinct descriptions and consistent share cards", () => {
+test("directory and privacy get distinct descriptions and consistent share cards", () => {
   const services = pageMetadata("en", "/services", { title: "Services" });
-  const pricing = pageMetadata("en", "/pricing", { title: "Prices" });
-  assert.notEqual(services.description, pricing.description);
-  assert.ok(String(pricing.description).includes("monthly care"));
+  const privacy = pageMetadata("en", "/privacy", { title: "Privacy" });
+  assert.notEqual(services.description, privacy.description);
+  assert.ok(String(privacy.description).includes("enquiry"));
   assert.ok(JSON.stringify(services.twitter).includes("summary_large_image"));
   assert.ok(JSON.stringify(services.openGraph?.images).includes("1200"));
   const schema = organizationSchema();

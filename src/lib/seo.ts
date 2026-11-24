@@ -5,10 +5,6 @@ const descriptions: Record<string, [string, string]> = {
     "Explore website, web application and mobile app development services. Compare starting prices, scope and preparation, then request a project estimate.",
     "वेबसाइट, वेब एप्लिकेशन और मोबाइल ऐप डेवलपमेंट सेवाएँ देखें। शुरुआती कीमत, काम का दायरा और तैयारी समझकर प्रोजेक्ट का अनुमान माँगें।",
   ],
-  "/pricing": [
-    "Compare Silio’s scoped starting packages for websites, web apps and mobile apps. One-time project costs and optional monthly care are listed separately.",
-    "Silio के वेबसाइट, वेब ऐप और मोबाइल ऐप पैकेज की शुरुआती कीमतें देखें। एक बार के प्रोजेक्ट और वैकल्पिक मासिक केयर के खर्च अलग हैं।",
-  ],
   "/privacy": [
     "Learn how Silio handles enquiry details, estimate callback requests, optional model files and first-party page analytics, and how to request data correction or deletion.",
     "जानें कि Silio पूछताछ, अनुमान के लिए संपर्क जानकारी, मॉडल फ़ाइल और अपनी साइट के आँकड़ों का उपयोग कैसे करता है और सुधार या हटाने का अनुरोध कैसे करें।",

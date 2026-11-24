@@ -13,7 +13,6 @@ export default function Header({ lang }: { lang: Lang }) {
     ["", t.navHome],
     ["/services", t.navServices],
     ["/portfolio", lang === "hi" ? "पोर्टफ़ोलियो" : "Portfolio"],
-    ["/pricing", t.navPricing],
     ["/contact", t.navConnect],
   ];
   return (

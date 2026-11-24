@@ -33,7 +33,6 @@ export default function Footer({ lang }: { lang: Lang }) {
                 <Link href={`/${lang}/estimate`}>
                   {lang === "hi" ? "खर्च का अनुमान" : "Project estimator"}
                 </Link>
-                <Link href={`/${lang}/pricing`}>{t.navPricing}</Link>
                 <Link href={`/${lang}/contact`}>{t.navConnect}</Link>
                 <Link href={`/${lang}/demos`}>
                   {lang === "hi" ? "डेमो" : "Demos"}

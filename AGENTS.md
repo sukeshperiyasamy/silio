@@ -21,3 +21,5 @@
 - Estimator leads must save contact details and a server-calculated estimate snapshot before showing success. Keep WhatsApp optional, record explicit permission for estimate follow-up, and never collect contact details merely from browsing or adjusting estimates.
 
 - Keep public SEO metadata in `src/lib/seo.ts` consistent with each page, using bilingual canonical/alternate links and sharing images. Never invent addresses, client proof, reviews or ranking guarantees. Search Console ownership verification needs the owner-provided public token; deploying metadata does not verify or index the site automatically.
+
+- Services is the main service-and-price catalogue. Do not recreate a separate Pricing page or navigation item. Legacy `/en/pricing` and `/hi/pricing` URLs redirect permanently to the matching Services page.
