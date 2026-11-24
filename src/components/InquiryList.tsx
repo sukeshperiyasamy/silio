@@ -32,13 +32,69 @@ export default function InquiryList({
           </div>
           <p>
             <a href={`mailto:${lead.email}`}>{String(lead.email)}</a> ·{" "}
-            {String(lead.phone)}
+            <a href={`tel:${String(lead.phone).replace(/[^+0-9]/g, "")}`}>
+              {String(lead.phone)}
+            </a>
           </p>
           <p>
             <b>{String(lead.service)}</b> · Budget:{" "}
             {String(lead.budget || "Not specified")}
           </p>
           {lead.projectUrl && <p>Website: {String(lead.projectUrl)}</p>}
+          {lead.purpose === "estimate" && lead.estimate && (
+            <div className="admin-estimate-detail">
+              <span className="label">Estimate enquiry</span>
+              <p>
+                <strong>One-time starting estimate:</strong> ₹
+                {Number(lead.estimate.oneTime).toLocaleString("en-IN")} ·{" "}
+                <strong>Monthly care:</strong> ₹
+                {Number(lead.estimate.monthly).toLocaleString("en-IN")}/month
+              </p>
+              <ul>
+                {Array.isArray(lead.estimate.items) &&
+                  lead.estimate.items.map(
+                    (item: {
+                      id: string;
+                      name: string;
+                      amount: number;
+                      scope: string;
+                    }) => (
+                      <li key={item.id}>
+                        <strong>{item.name}</strong> · ₹
+                        {Number(item.amount).toLocaleString("en-IN")}
+                        <br />
+                        <small>{item.scope}</small>
+                      </li>
+                    ),
+                  )}
+              </ul>
+              {lead.estimate.care && (
+                <p>
+                  Monthly plan: {String(lead.estimate.care.name)} ·{" "}
+                  {String(lead.estimate.care.scope)}
+                </p>
+              )}
+              {lead.contactPermission?.purpose === "estimate-follow-up" && (
+                <p className="muted">
+                  Customer requested follow-up by phone, email or WhatsApp about
+                  this estimate.{" "}
+                  {lead.language === "hi"
+                    ? "Preferred site language: Hindi."
+                    : "Preferred site language: English."}
+                </p>
+              )}
+              {/^\+[1-9]\d{7,14}$/.test(String(lead.phone)) && (
+                <a
+                  className="pill outline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://wa.me/${String(lead.phone).replace(/\D/g, "")}?text=${encodeURIComponent(`Hello ${lead.name}, this is Silio following up on the estimate you requested for ${lead.service}. May we discuss your requirements and next steps?`)}`}
+                >
+                  Follow up on WhatsApp
+                </a>
+              )}
+            </div>
+          )}
           <p className="admin-message">{String(lead.message)}</p>
           <small>
             Form page: {String(lead.page || "not recorded")} · Email:{" "}

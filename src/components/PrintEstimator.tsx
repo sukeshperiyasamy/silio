@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import EstimateContactForm from "./EstimateContactForm";
 import type { Lang } from "@/lib/site";
 import { printEstimate } from "@/lib/printing";
 export default function PrintEstimator({ lang }: { lang: Lang }) {
   const hi = lang === "hi";
+  const [submitting, setSubmitting] = useState(false);
   const [grams, setGrams] = useState("50"),
     [quantity, setQuantity] = useState("1"),
     [design, setDesign] = useState("0");
@@ -29,6 +31,7 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
             </label>
             <input
               id="print-weight"
+              disabled={submitting}
               type="number"
               min="1"
               max="10000"
@@ -41,6 +44,7 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
             <label htmlFor="print-quantity">{hi ? "मात्रा" : "Quantity"}</label>
             <input
               id="print-quantity"
+              disabled={submitting}
               type="number"
               min="1"
               max="1000"
@@ -55,6 +59,7 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
             </label>
             <select
               id="print-design"
+              disabled={submitting}
               value={design}
               onChange={(e) => setDesign(e.target.value)}
             >
@@ -74,7 +79,7 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
             : "Include supports in the weight. This is not a live slicer or a final quote. Material, machine time, finishing and delivery must be reviewed."}
         </p>
       </div>
-      <aside className="print-estimate-summary" aria-live="polite">
+      <aside className="print-estimate-summary">
         {result ? (
           <>
             <span>
@@ -87,7 +92,7 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
               {hi ? "डिज़ाइन की शुरुआती फ़ीस" : "Design starting fee"}{" "}
               <b>{money(result.design)}</b>
             </p>
-            <div className="print-subtotal">
+            <div className="print-subtotal" aria-live="polite">
               {hi ? "शुरुआती उप-योग" : "Starting subtotal"}
               <b data-testid="print-subtotal">{money(result.subtotal)}</b>
             </div>
@@ -96,8 +101,13 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
                 ? "फ़िनिशिंग, अतिरिक्त मशीन समय, टैक्स और डिलीवरी शामिल नहीं हैं।"
                 : "Excludes finishing, extra machine time, tax and delivery."}
             </small>
+            <a className="pill" href="#print-estimate-contact">
+              {hi
+                ? "अनुमान भेजें और कॉल का अनुरोध करें"
+                : "Send estimate & request a callback"}
+            </a>
             <Link
-              className="pill"
+              className="text-link"
               href={`/${lang}/contact?service=pla-printing&budget=${result.subtotal}&message=${encodeURIComponent(message)}`}
             >
               {hi ? "फ़ाइल के साथ पूछताछ करें" : "Enquire with your model"}
@@ -111,6 +121,20 @@ export default function PrintEstimator({ lang }: { lang: Lang }) {
           </p>
         )}
       </aside>
+      {result && (
+        <EstimateContactForm
+          formId="print-estimate-contact"
+          lang={lang}
+          selection={{
+            kind: "printing",
+            grams: Number(grams),
+            quantity: Number(quantity),
+            design: Number(design),
+          }}
+          summary={message}
+          onBusyChange={setSubmitting}
+        />
+      )}
     </div>
   );
 }

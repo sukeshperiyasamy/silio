@@ -17,6 +17,13 @@ const client = new MongoClient(process.env.MONGODB_URI, {
 const name = "SILIO_WORKER_QA_" + randomUUID();
 const db = client.db("silio_worker_verification");
 try {
+  await client.connect();
+  await db
+    .collection("inquiries")
+    .createIndex(
+      { estimateRequestId: 1 },
+      { unique: true, sparse: true, name: "estimate_request_unique" },
+    );
   for (const path of [
     "/en",
     "/hi",
@@ -91,8 +98,50 @@ try {
     "Worker model enquiry",
   );
   await client.connect();
+  const estimateBody = {
+    name,
+    email: "qa@example.invalid",
+    phone: "+1 202 555 0123",
+    purpose: "estimate",
+    estimateRequestId: randomUUID(),
+    contactPermission: true,
+    page: "/hi/estimate",
+    language: "hi",
+    estimate: {
+      kind: "project",
+      packageIds: ["landing", "charts"],
+      careId: "maintenance",
+      oneTime: 1,
+    },
+    message: "Synthetic estimate verification.",
+  };
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const saved = await fetch(base + "/api/inquiry", {
+      method: "POST",
+      headers: { Origin: base, "Content-Type": "application/json" },
+      body: JSON.stringify(estimateBody),
+    });
+    assert.equal(saved.status, 200, "Worker estimate save/retry");
+    assert.ok((await saved.json()).id);
+  }
+  const denied = await fetch(base + "/api/inquiry", {
+    method: "POST",
+    headers: { Origin: base, "Content-Type": "application/json" },
+    body: JSON.stringify({ ...estimateBody, contactPermission: false }),
+  });
+  assert.equal(denied.status, 400, "Estimate requires follow-up permission");
   const records = await db.collection("inquiries").find({ name }).toArray();
-  assert.equal(records.length, 3, "MongoDB retained records");
+  assert.equal(
+    records.length,
+    4,
+    "MongoDB retained records without duplicate estimate",
+  );
+  const estimate = records.find((r) => r.purpose === "estimate");
+  assert.equal(estimate.estimate.oneTime, 4998);
+  assert.equal(estimate.estimate.monthly, 999);
+  assert.equal(estimate.phone, "+12025550123");
+  assert.equal(estimate.language, "hi");
+  assert.equal(estimate.contactPermission.purpose, "estimate-follow-up");
   const model = records.find((r) => r.attachment);
   assert.ok(model);
   assert.equal(
@@ -123,16 +172,22 @@ try {
     headers,
   });
   assert.equal(csv.status, 200);
-  assert.ok((await csv.text()).includes(name), "streamed CSV");
+  const exported = await csv.text();
+  assert.ok(exported.includes(name), "streamed CSV");
+  assert.ok(exported.includes("One-time estimate (INR)"));
+  assert.ok(exported.includes("4998"));
   const archive = await fetch(base + "/admin/enquiries?q=" + name, { headers });
   assert.equal(archive.status, 200);
-  assert.ok((await archive.text()).includes(name));
+  const archiveHtml = await archive.text();
+  assert.ok(archiveHtml.includes(name));
+  assert.ok(archiveHtml.includes("Estimate enquiry"));
+  assert.ok(archiveHtml.includes("https://wa.me/12025550123"));
   const report = await fetch(base + "/admin", { headers });
   assert.equal(report.status, 200);
   assert.ok((await report.text()).includes("Cloudflare D1"), "D1 dashboard");
   assert.equal((await fetch(base + "/api/admin/enquiries/export")).status, 401);
   console.log(
-    "PASS: Worker English/Hindi pages, D1 event/report, login, 3 independent MongoDB saves, status, streamed CSV and protected model download.",
+    "PASS: Worker English/Hindi pages, D1 event/report, login, MongoDB enquiry/model saves, deduplicated estimate lead with permission, callback links, status, streamed CSV and protected model download.",
   );
 } finally {
   await client.connect();

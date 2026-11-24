@@ -17,3 +17,5 @@
 - Use SVG icons for branding and interface decoration. Do not use emoji characters on the site; icons must render consistently on mobile and desktop.
 
 - Keep the short company introduction and contact form together on the Connect page (`/en/contact` and `/hi/contact`). Navigation uses Connect / जुड़ें; legacy About URLs redirect permanently to the matching contact page.
+
+- Estimator leads must save contact details and a server-calculated estimate snapshot before showing success. Keep WhatsApp optional, record explicit permission for estimate follow-up, and never collect contact details merely from browsing or adjusting estimates.

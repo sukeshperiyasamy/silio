@@ -1,3 +1,10 @@
+import { createHash } from "node:crypto";
+import {
+  normalizeEstimate,
+  estimateDescription,
+  type EstimateSnapshot,
+} from "@/lib/estimate-lead";
+import { sameOrigin } from "@/lib/admin-auth";
 import { trackedPaths } from "@/lib/analytics-paths";
 import { database } from "@/lib/db";
 import { allowRequest } from "@/lib/rate-limit";
@@ -27,12 +34,61 @@ export async function POST(req: NextRequest) {
     );
   }
   if (clean(body.website)) return NextResponse.json({ ok: true }); // honeypot
+  let estimate: EstimateSnapshot | undefined;
+  let estimateRequestId: string | undefined;
+  if (body.purpose === "estimate") {
+    if (!sameOrigin(req))
+      return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
+    if (
+      body.contactPermission !== true ||
+      typeof body.estimateRequestId !== "string" ||
+      !/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(
+        body.estimateRequestId,
+      )
+    )
+      return NextResponse.json(
+        { error: "Contact permission and a request ID are required" },
+        { status: 400 },
+      );
+    try {
+      estimate = normalizeEstimate(body.estimate);
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid estimate selections" },
+        { status: 400 },
+      );
+    }
+    estimateRequestId = body.estimateRequestId;
+    if (!process.env.MONGODB_URI)
+      return NextResponse.json(
+        { error: "Estimate storage unavailable" },
+        { status: 503 },
+      );
+  }
   const name = clean(body.name, 100),
     email = clean(body.email, 150),
-    phone = clean(body.phone, 20),
-    service = clean(body.service, 150),
-    budget = clean(body.budget, 70),
-    message = clean(body.message, 3000);
+    phone = estimate
+      ? clean(body.phone, 32).replace(/[\s()-]/g, "")
+      : clean(body.phone, 20),
+    service = estimate
+      ? estimate.kind === "printing"
+        ? "3D printing estimate"
+        : "Project estimate: " + estimate.items[0].name
+      : clean(body.service, 150),
+    budget = estimate
+      ? `INR ${estimate.oneTime} one-time; INR ${estimate.monthly}/month`
+      : clean(body.budget, 70),
+    message = estimate
+      ? estimateDescription(estimate) +
+        (clean(body.message, 1500)
+          ? "\nCustomer notes: " + clean(body.message, 1500)
+          : "")
+      : clean(body.message, 3000);
+  if (estimate && !/^\+[1-9]\d{7,14}$/.test(phone))
+    return NextResponse.json(
+      { error: "Include a valid mobile country code" },
+      { status: 400 },
+    );
   if (
     name.length < 2 ||
     !/^\S+@\S+\.\S+$/.test(email) ||
@@ -97,34 +153,74 @@ export async function POST(req: NextRequest) {
           { status: 429 },
         );
       savedDb = await database();
-      const record = await savedDb
-        .collection("inquiries")
-        .insertOne({
-          page: trackedPaths.has(clean(body.page, 200))
-            ? clean(body.page, 200)
-            : null,
-          name,
-          email,
-          phone,
-          service,
-          budget,
-          message,
-          projectUrl,
-          campaign,
-          purpose: clean(body.purpose, 30) || "project",
-          createdAt: new Date(),
-          status: "new",
-          emailStatus: "not-configured",
-          ...(attachment
-            ? {
-                attachment: {
-                  filename: attachment.filename,
-                  data: Buffer.from(attachment.content, "base64"),
-                },
-              }
-            : {}),
-        });
-      savedId = record.insertedId.toHexString();
+      const record = {
+        page: trackedPaths.has(clean(body.page, 200))
+          ? clean(body.page, 200)
+          : null,
+        name,
+        email,
+        phone,
+        service,
+        budget,
+        message,
+        projectUrl,
+        campaign,
+        purpose: clean(body.purpose, 30) || "project",
+        createdAt: new Date(),
+        status: "new",
+        emailStatus: "not-configured",
+        ...(estimate
+          ? {
+              estimate,
+              estimateRequestId,
+              estimateFingerprint: createHash("sha256")
+                .update(
+                  JSON.stringify({ name, email, phone, estimate, message }),
+                )
+                .digest("hex"),
+              language: body.language === "hi" ? "hi" : "en",
+              contactPermission: {
+                purpose: "estimate-follow-up",
+                channels: ["phone", "email", "whatsapp"],
+                acceptedAt: new Date(),
+                noticeVersion: "estimate-v1",
+              },
+            }
+          : {}),
+        ...(attachment
+          ? {
+              attachment: {
+                filename: attachment.filename,
+                data: Buffer.from(attachment.content, "base64"),
+              },
+            }
+          : {}),
+      };
+      if (estimate) {
+        const result = await savedDb
+          .collection("inquiries")
+          .findOneAndUpdate(
+            { estimateRequestId },
+            { $setOnInsert: record },
+            {
+              upsert: true,
+              returnDocument: "after",
+              includeResultMetadata: true,
+            },
+          );
+        if (!result.value) throw new Error("Estimate was not stored");
+        if (result.value.estimateFingerprint !== record.estimateFingerprint)
+          return NextResponse.json(
+            { error: "Request ID already used; refresh and retry" },
+            { status: 409 },
+          );
+        savedId = result.value._id.toString();
+        if (result.lastErrorObject?.updatedExisting)
+          return NextResponse.json({ ok: true, id: savedId });
+      } else {
+        const result = await savedDb.collection("inquiries").insertOne(record);
+        savedId = result.insertedId.toHexString();
+      }
     } catch {
       return NextResponse.json(
         {

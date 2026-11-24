@@ -9,6 +9,12 @@ try {
   await db.command({ ping: 1 });
   await Promise.all([
     db.collection("inquiries").createIndex({ createdAt: -1 }),
+    db
+      .collection("inquiries")
+      .createIndex(
+        { estimateRequestId: 1 },
+        { unique: true, sparse: true, name: "estimate_request_unique" },
+      ),
     db.collection("page_views").createIndex({ eventId: 1 }, { unique: true }),
     db
       .collection("page_views")

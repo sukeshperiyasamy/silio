@@ -44,6 +44,13 @@ export async function GET(request: Request) {
                     "Campaign",
                     "Email status",
                     "Model filename",
+                    "Enquiry purpose",
+                    "One-time estimate (INR)",
+                    "Monthly care (INR)",
+                    "Estimate items",
+                    "Monthly care plan",
+                    "Contact permission",
+                    "Permission recorded at (UTC)",
                   ]
                     .map(cell)
                     .join(",") +
@@ -76,6 +83,25 @@ export async function GET(request: Request) {
                 lead.campaign?.utm_campaign,
                 lead.emailStatus,
                 lead.attachment?.filename,
+                lead.purpose,
+                lead.estimate?.oneTime,
+                lead.estimate?.monthly,
+                Array.isArray(lead.estimate?.items)
+                  ? lead.estimate.items
+                      .map(
+                        (item: {
+                          name: string;
+                          amount: number;
+                          scope: string;
+                        }) => `${item.name}: INR ${item.amount}; ${item.scope}`,
+                      )
+                      .join(" | ")
+                  : "",
+                lead.estimate?.care?.name,
+                lead.contactPermission?.purpose,
+                lead.contactPermission?.acceptedAt
+                  ? new Date(lead.contactPermission.acceptedAt).toISOString()
+                  : "",
               ]
                 .map(cell)
                 .join(",") + "\r\n",

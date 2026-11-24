@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
-import { prices, type Lang, waLink } from "@/lib/site";
+import EstimateContactForm from "./EstimateContactForm";
+import { prices, type Lang } from "@/lib/site";
 import { estimatePackages } from "@/lib/growth";
 
 export default function ProjectEstimator({ lang }: { lang: Lang }) {
   const hi = lang === "hi";
+  const [submitting, setSubmitting] = useState(false);
   const [base, setBase] = useState("landing"),
     [extras, setExtras] = useState<string[]>([]),
     [care, setCare] = useState("");
@@ -26,6 +27,7 @@ export default function ProjectEstimator({ lang }: { lang: Lang }) {
           </label>
           <select
             id="estimate-base"
+            disabled={submitting}
             value={base}
             onChange={(e) => setBase(e.target.value)}
           >
@@ -55,6 +57,7 @@ export default function ProjectEstimator({ lang }: { lang: Lang }) {
               <label key={id}>
                 <input
                   type="checkbox"
+                  disabled={submitting}
                   checked={extras.includes(id)}
                   onChange={(e) =>
                     setExtras(
@@ -75,6 +78,7 @@ export default function ProjectEstimator({ lang }: { lang: Lang }) {
           </label>
           <select
             id="estimate-care"
+            disabled={submitting}
             value={care}
             onChange={(e) => setCare(e.target.value)}
           >
@@ -111,21 +115,17 @@ export default function ProjectEstimator({ lang }: { lang: Lang }) {
             ? "यह अंतिम कोटेशन नहीं है। पैकेज की सीमाएँ लागू हैं। डोमेन, होस्टिंग, विज्ञापन खर्च, API और टैक्स अलग हैं।"
             : "This is a starting estimate, subject to package limits and scope review. Domain, hosting, ad spend, APIs and taxes are extra."}
         </p>
-        <a
-          className="pill light"
-          href={waLink(summary)}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {hi ? "WhatsApp पर अनुमान भेजें" : "Discuss this estimate"}
+        <a className="pill light" href="#project-estimate-contact">
+          {hi ? "यह अनुमान भेजें" : "Send this estimate"}
         </a>
-        <Link
-          className="text-link"
-          href={`/${lang}/contact?service=${base}&budget=${total.oneTime}&message=${encodeURIComponent(summary)}`}
-        >
-          {hi ? "या पूछताछ फ़ॉर्म भरें" : "Or send a project enquiry"}
-        </Link>
       </aside>
+      <EstimateContactForm
+        formId="project-estimate-contact"
+        lang={lang}
+        selection={{ kind: "project", packageIds: selectedIds, careId: care }}
+        summary={summary}
+        onBusyChange={setSubmitting}
+      />
     </div>
   );
 }

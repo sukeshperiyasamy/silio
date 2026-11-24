@@ -2572,3 +2572,125 @@ main {
 .teaser-icon svg {
   display: block;
 }
+
+.estimate-lead-form {
+  width: 100%;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #9ba99a;
+}
+.estimate-lead-form h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+.estimate-contact-fields {
+  display: grid;
+  gap: 16px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.estimate-contact-fields input:not([type="checkbox"]),
+.estimate-contact-fields textarea {
+  color: var(--fg);
+  background: white;
+  font-size: 16px;
+}
+.estimate-contact-fields .field {
+  margin: 0;
+}
+.estimate-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.estimate-consent input {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--accent);
+}
+.estimate-contact-fields .pill {
+  width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.estimate-summary .estimate-lead-form .text-link {
+  color: white;
+  border-color: #a8be9b;
+}
+.estimate-summary .estimate-saved .outline {
+  color: white;
+  border-color: #a8be9b;
+}
+.estimate-summary .estimate-contact-fields .field label {
+  color: white;
+}
+.estimate-lead-form .estimate-saved p {
+  margin-bottom: 16px;
+}
+.estimate-lead-form [role="alert"] {
+  margin-top: 18px;
+}
+.admin-estimate-detail {
+  padding: 20px;
+  margin: 18px 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f4f8ef;
+}
+.admin-estimate-detail ul {
+  padding-left: 20px;
+}
+.admin-estimate-detail li {
+  margin-bottom: 10px;
+}
+
+.estimator > .estimate-lead-form,
+.print-estimator > .estimate-lead-form {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: white;
+  color: var(--fg);
+  scroll-margin-top: 120px;
+}
+.estimator > .estimate-lead-form .estimate-contact-fields,
+.print-estimator > .estimate-lead-form .estimate-contact-fields {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.estimate-contact-fields > .field:nth-child(4),
+.estimate-contact-fields > .estimate-consent,
+.estimate-contact-fields > .text-link,
+.estimate-contact-fields > .pill {
+  grid-column: 1 / -1;
+}
+.estimate-contact-fields .field textarea {
+  min-height: 96px;
+}
+.estimate-contact-fields > .text-link {
+  justify-self: start;
+}
+.estimate-contact-fields > .pill {
+  justify-self: start;
+  width: auto;
+}
+@media (max-width: 800px) {
+  .estimator > .estimate-lead-form .estimate-contact-fields,
+  .print-estimator > .estimate-lead-form .estimate-contact-fields {
+    grid-template-columns: 1fr;
+  }
+  .estimator > .estimate-lead-form,
+  .print-estimator > .estimate-lead-form {
+    padding: 24px;
+  }
+  .estimate-contact-fields > .pill {
+    width: 100%;
+  }
+}

@@ -42,8 +42,8 @@ export default async function Privacy({
           </h2>
           <p>
             {hi
-              ? "पूछताछ की जानकारी और वैकल्पिक मॉडल फ़ाइल MongoDB में रखी जाती हैं, ताकि हमारी अधिकृत टीम जवाब दे सके। ईमेल सेवा चालू होने पर उसकी एक कॉपी ईमेल से भी भेजी जा सकती है।"
-              : "Enquiry details and optional model attachments are stored in MongoDB for our authorized team to respond. When email delivery is enabled, a copy may also be sent by email."}
+              ? "पूछताछ की जानकारी और वैकल्पिक मॉडल फ़ाइल MongoDB में रखी जाती हैं, ताकि हमारी अधिकृत टीम जवाब दे सके। अनुमान भेजने पर चुनी हुई सेवाएँ, शुरुआती खर्च और उसी अनुमान पर फ़ोन, ईमेल या WhatsApp से संपर्क की आपकी अनुमति भी रखी जाती है। केवल अनुमान देखने से आपकी संपर्क जानकारी सबमिट नहीं होती। ईमेल सेवा चालू होने पर उसकी एक कॉपी ईमेल से भी भेजी जा सकती है।"
+              : "Enquiry details and optional model attachments are stored in MongoDB for our authorized team to respond. When you submit an estimate, we also save your selected services, starting costs and permission to follow up by phone, email or WhatsApp about that estimate. Viewing an estimate alone does not submit your contact details. When email delivery is enabled, a copy may also be sent by email."}
           </p>
           <p>
             {hi
