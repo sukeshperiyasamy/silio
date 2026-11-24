@@ -4,17 +4,34 @@
   "main": "custom-worker.ts",
   "compatibility_date": "2026-11-23",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
-  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "silio" }],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "silio",
+    },
+  ],
   "d1_databases": [
     {
       "binding": "ANALYTICS_DB",
       "database_name": "silio-analytics",
       "database_id": "52e48cb7-653f-4625-8d3d-aa82beeaa9ac",
-      "migrations_dir": "migrations"
-    }
+      "migrations_dir": "migrations",
+    },
   ],
-  "vars": { "MONGODB_DB": "silio" },
-  "triggers": { "crons": ["15 2 * * *"] },
-  "observability": { "enabled": false }
+  "vars": {
+    "MONGODB_DB": "silio",
+  },
+  "triggers": {
+    "crons": ["15 2 * * *"],
+  },
+  "observability": {
+    "enabled": false,
+    "issues": {
+      "enabled": true,
+    },
+  },
 }
